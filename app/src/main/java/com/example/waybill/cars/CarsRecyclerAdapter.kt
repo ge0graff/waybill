@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.waybill.R
 import com.example.waybill.databinding.CarItemBinding
 
-class CarsAdapter: RecyclerView.Adapter<CarsAdapter.CarsHolder>() {
+class CarsRecyclerAdapter: RecyclerView.Adapter<CarsRecyclerAdapter.CarsHolder>() {
     var carList = ArrayList<Car>()
 
     class CarsHolder(item: View): RecyclerView.ViewHolder(item) {
