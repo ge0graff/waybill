@@ -33,7 +33,7 @@ class CarsFragment : Fragment(R.layout.fragment_cars) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         rc_view_my_car.layoutManager = LinearLayoutManager(context)
-        rc_view_my_car.adapter = CarsRecyclerAdapter()
+        rc_view_my_car.adapter = adapter
         addCars()
     }
 
