@@ -5,15 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.waybill.R
+import com.example.waybill.data.Cars
 import com.example.waybill.databinding.CarItemBinding
 
 class CarsRecyclerAdapter: RecyclerView.Adapter<CarsRecyclerAdapter.CarsHolder>() {
-    var carList = ArrayList<Car>()
+    var carList = ArrayList<Cars>()
 
     class CarsHolder(item: View): RecyclerView.ViewHolder(item) {
         val binding = CarItemBinding.bind(item)
 
-        fun bind(car: Car) = with(binding){
+        fun bind(car: Cars) = with(binding){
             carItemCarName.text = car.name
             carItemMileage.text = car.mileage
             carItemConsumptionSummerValue.text = car.consumption_summer
@@ -38,7 +39,7 @@ class CarsRecyclerAdapter: RecyclerView.Adapter<CarsRecyclerAdapter.CarsHolder>(
         return carList.size
     }
 
-    fun addCar(car: Car){
+    fun addCar(car: Cars){
         carList.add(car)
         notifyDataSetChanged()
 

@@ -1,10 +1,14 @@
 package com.example.waybill
 
 
+import android.app.Application
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.room.Room
 import com.example.waybill.cars.Car
 import com.example.waybill.cars.CarsRecyclerAdapter
+import com.example.waybill.data.CarsDatabase
 import com.example.waybill.databinding.ActivityMainBinding
 import com.example.waybill.fragments.CarsFragment
 import com.example.waybill.fragments.ListFragment
@@ -21,10 +25,33 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding_main = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding_main.root)
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_holder,
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_holder,
             MainFragment.newInstance()).commit()
         navigation()
 
+
+    }
+    companion object {
+        @Volatile
+        private var INSTANCE: CarsDatabase? = null
+
+        fun getInstance(context: Context): CarsDatabase {
+            synchronized(this) {
+                var instance = INSTANCE
+
+                if (instance == null) {
+                    instance = Room.databaseBuilder(
+                        context.applicationContext,
+                        CarsDatabase::class.java,
+                        "car_table"
+                    )
+                        .allowMainThreadQueries()
+                        .build()
+                    INSTANCE = instance
+                }
+                return instance
+            }
+        }
     }
 
     private fun navigation (){
