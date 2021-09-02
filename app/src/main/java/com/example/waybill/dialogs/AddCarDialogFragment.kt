@@ -32,4 +32,6 @@ class AddCarDialogFragment(val adapter: CarsRecyclerAdapter): DialogFragment() {
 
         return rootView
     }
+
+
 }

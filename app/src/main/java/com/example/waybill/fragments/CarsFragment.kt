@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.waybill.R
+import com.example.waybill.cars.Car
 import com.example.waybill.cars.CarsRecyclerAdapter
 import com.example.waybill.databinding.FragmentCarsBinding
 import com.example.waybill.dialogs.AddCarDialogFragment
@@ -19,7 +20,6 @@ class CarsFragment : Fragment(R.layout.fragment_cars) {
     val adapter = CarsRecyclerAdapter()
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,13 +27,12 @@ class CarsFragment : Fragment(R.layout.fragment_cars) {
 
         car_binding = FragmentCarsBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         rc_view_my_car.layoutManager = LinearLayoutManager(context)
-        rc_view_my_car.adapter = CarsRecyclerAdapter()
+        rc_view_my_car.adapter = adapter
         addCars()
     }
 
@@ -45,10 +44,12 @@ class CarsFragment : Fragment(R.layout.fragment_cars) {
 
     }
 
-    companion object {
 
+    companion object {
+        const val ARG_COLUMN_COUNT = "column-count"
         @JvmStatic
         fun newInstance() = CarsFragment()
+
     }
 
     fun addCars(){
