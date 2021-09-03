@@ -1,13 +1,10 @@
 package com.example.waybill
 
 
-import android.app.Application
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.room.Room
-import com.example.waybill.cars.Car
-import com.example.waybill.cars.CarsRecyclerAdapter
 import com.example.waybill.data.CarsDatabase
 import com.example.waybill.databinding.ActivityMainBinding
 import com.example.waybill.fragments.CarsFragment
@@ -53,6 +50,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 
     private fun navigation (){
         binding_main.bottonNavigation.selectedItemId = R.id.main

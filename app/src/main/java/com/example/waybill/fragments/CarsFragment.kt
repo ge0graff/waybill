@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.waybill.MainActivity
 import com.example.waybill.R
-import com.example.waybill.cars.Car
 import com.example.waybill.cars.CarsRecyclerAdapter
+import com.example.waybill.data.Cars
 import com.example.waybill.databinding.FragmentCarsBinding
 import com.example.waybill.dialogs.AddCarDialogFragment
 import kotlinx.android.synthetic.main.fragment_cars.*
@@ -19,7 +19,16 @@ import kotlinx.android.synthetic.main.fragment_cars.*
 class CarsFragment : Fragment(R.layout.fragment_cars) {
     private var car_binding: FragmentCarsBinding? = null
     private val binding get() = car_binding!!
-    val adapter = CarsRecyclerAdapter()
+    lateinit var carsList: List<Cars>
+    lateinit var adapter: CarsRecyclerAdapter
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val db = MainActivity.getInstance(requireContext())
+        carsList = db.carsDao().reedAllData()
+        adapter = CarsRecyclerAdapter(requireContext(), carsList)
+    }
 
 
     override fun onCreateView(
@@ -36,15 +45,20 @@ class CarsFragment : Fragment(R.layout.fragment_cars) {
         rc_view_my_car.layoutManager = LinearLayoutManager(context)
         rc_view_my_car.adapter = adapter
         addCars()
+
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+//    override fun onActivityCreated(savedInstanceState: Bundle?) {
+//        super.onActivityCreated(savedInstanceState)
+//
+//    }
 
+    override fun onResume() {
+        super.onResume()
         rc_view_my_car.layoutManager = LinearLayoutManager(this.context)
         rc_view_my_car.adapter = adapter
-
     }
+
 
 
     companion object {
