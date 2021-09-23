@@ -11,7 +11,7 @@ interface CarsDao {
     fun reedAllData(): List<Cars>
 
     @Query("SELECT * FROM cars_table WHERE id = :id")
-    fun getById(id: Long): List<Cars>
+    fun getById(id: Int): List<Cars>
 
     @Insert
     fun insert (cars: Cars)
