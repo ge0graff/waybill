@@ -13,7 +13,6 @@ class CarsRecyclerAdapter: RecyclerView.Adapter<CarsRecyclerAdapter.CarsHolder>(
     class CarsHolder(item: View): RecyclerView.ViewHolder(item) {
         val binding = CarItemBinding.bind(item)
 
-
         fun bind(car: Car) = with(binding){
             carItemCarName.text = car.name
             carItemMileage.text = car.mileage
