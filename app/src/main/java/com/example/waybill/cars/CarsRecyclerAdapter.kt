@@ -2,13 +2,10 @@ package com.example.waybill.cars
 
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.example.waybill.MainActivity
 import com.example.waybill.R
@@ -27,15 +24,26 @@ class CarsRecyclerAdapter(val context: Context, var carList: List<Cars>):
         var binding = CarItemBinding.bind(item)
 
 
-        fun bind(car: Cars, carInfoFragment: CarInfoFragment) = with(binding){
+        fun bind(car: Cars) = with(binding){
             carItemCarName.text = car.name
-            carItemMileage.text = car.mileage + R.string.designation_km
+            carItemMileage.text = car.mileage + " км"
 
             itemView.setOnClickListener {
-                val bundle = Bundle()
-                bundle.putString("title", "тест")
-                carInfoFragment.arguments = bundle
+
+//                Я знаю, это хуйня
+
+                carName = car.name
+                mileage = car.mileage
+                consumption_summer = car.consumption_summer
+                consumption_winter = car.consumption_winter
+                fuel_value = car.fuel_value
                 clickHandler.forwardClick(CarsHolder(it))
+
+//          Этот код я пытался воплотить в жизь
+//                val bundle = Bundle()
+//                bundle.putString("MyArg", "тест")
+//                val carInfoFragment = CarInfoFragment()
+//                carInfoFragment.arguments = bundle
             }
           }
         }
@@ -47,7 +55,7 @@ class CarsRecyclerAdapter(val context: Context, var carList: List<Cars>):
     }
 
     override fun onBindViewHolder(holder: CarsHolder, position: Int) {
-        holder.bind(carList[position], CarInfoFragment())
+        holder.bind(carList[position])
 
     }
 
@@ -70,4 +78,12 @@ class CarsRecyclerAdapter(val context: Context, var carList: List<Cars>):
     interface ClickEventHandler {
         fun forwardClick(holder: CarsRecyclerAdapter.CarsHolder)
             }
+
+    companion object{
+        var carName = ""
+        var mileage = ""
+        var consumption_summer = ""
+        var consumption_winter = ""
+        var fuel_value = ""
+    }
 }

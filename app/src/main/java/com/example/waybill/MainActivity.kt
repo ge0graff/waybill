@@ -2,19 +2,20 @@ package com.example.waybill
 
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.room.Room
 import com.example.waybill.cars.CarsRecyclerAdapter
-import com.example.waybill.data.Cars
 import com.example.waybill.data.CarsDatabase
 import com.example.waybill.databinding.ActivityMainBinding
 import com.example.waybill.fragments.*
-import java.text.FieldPosition
 
 
 class MainActivity : AppCompatActivity(), CarsRecyclerAdapter.ClickEventHandler {
     lateinit var binding_main: ActivityMainBinding
+
 
     val mainFragment = MainFragment.newInstance()
     val carsFragment = CarsFragment.newInstance()
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity(), CarsRecyclerAdapter.ClickEventHandler 
             supportFragmentManager.beginTransaction().replace(R.id.fragment_holder,
             MainFragment.newInstance()).commit()
         navigation()
-            }
+                    }
 
 
     companion object {

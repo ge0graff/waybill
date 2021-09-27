@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,7 +25,6 @@ class CarsFragment : Fragment(R.layout.fragment_cars) {
     private val binding get() = car_binding!!
     lateinit var carsList: List<Cars>
     lateinit var adapter: CarsRecyclerAdapter
-
 
 
     override fun onAttach(context: Context) {
