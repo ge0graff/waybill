@@ -28,8 +28,9 @@ class AddCarDialogFragment(val adapter: CarsRecyclerAdapter): DialogFragment() {
 
         rootView.bt_add_car.setOnClickListener {
 
-            val car = Cars(null, ed_car_name.text.toString(), ed_car_mileage.text.toString(), ed_consumption_summer.text.toString(),
-                ed_consumption_winter.text.toString(), ed_fuel_value.text.toString()+".л")
+            val car = Cars(null, ed_car_name.text.toString(), ed_car_mileage.text.toString(),
+                ed_consumption_summer.text.toString(), ed_fuel_value.text.toString(),
+                ed_fuel_value.text.toString()+" л")
             db.carsDao().insert(car)
             adapter.addCar(car)
             dismiss()

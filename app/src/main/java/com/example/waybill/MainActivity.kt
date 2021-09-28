@@ -5,9 +5,11 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.room.Room
 import com.example.waybill.cars.CarsRecyclerAdapter
+import com.example.waybill.data.Cars
 import com.example.waybill.data.CarsDatabase
 import com.example.waybill.databinding.ActivityMainBinding
 import com.example.waybill.fragments.*
@@ -20,7 +22,7 @@ class MainActivity : AppCompatActivity(), CarsRecyclerAdapter.ClickEventHandler 
     val mainFragment = MainFragment.newInstance()
     val carsFragment = CarsFragment.newInstance()
     val listFragment = ListFragment.newInstance()
-    val carInfoFragment = CarInfoFragment.newInstance()
+//    val carInfoFragment = CarInfoFragment.getNewInstance()
 
 
 
@@ -31,6 +33,8 @@ class MainActivity : AppCompatActivity(), CarsRecyclerAdapter.ClickEventHandler 
             supportFragmentManager.beginTransaction().replace(R.id.fragment_holder,
             MainFragment.newInstance()).commit()
         navigation()
+        val carInfoFg = CarInfoFragment()
+        carInfoFg.arguments?.putString("test", "carName")
                     }
 
 
@@ -85,9 +89,20 @@ class MainActivity : AppCompatActivity(), CarsRecyclerAdapter.ClickEventHandler 
 
     }
 
-    override fun forwardClick(holder: CarsRecyclerAdapter.CarsHolder) {
+    override fun forwardClick(car: Cars) {
+        val bundle = Bundle()
+        bundle.putString("name", car.name)
+        bundle.putString("mileage", car.mileage)
+        bundle.putString("cSum", car.consumption_summer)
+        bundle.putString("cWin", car.consumption_winter)
+        bundle.putString("fuel", car.fuel_value)
+        CarInfoFragment.getNewInstance(arg = bundle)
         supportFragmentManager.beginTransaction().replace(R.id.fragment_holder,
-            carInfoFragment).addToBackStack(null).commit()
+            CarInfoFragment.getNewInstance(arg = bundle)).addToBackStack(null).commit()
+
+
+
+
     }
 
 

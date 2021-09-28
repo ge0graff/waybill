@@ -65,7 +65,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ed_car_mileage" />
 
     <EditText
-        android:id="@+id/ed_consumption_winter"
+        android:id="@+id/ed_fuel_value"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -74,13 +74,13 @@
         android:inputType="textPersonName"
         android:text=""
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/ed_fuel_value"
+        app:layout_constraintEnd_toEndOf="@+id/ed_consumption_winter"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/ed_fuel_value"
-        app:layout_constraintTop_toBottomOf="@+id/ed_fuel_value" />
+        app:layout_constraintStart_toStartOf="@+id/ed_consumption_winter"
+        app:layout_constraintTop_toBottomOf="@+id/ed_consumption_winter" />
 
     <EditText
-        android:id="@+id/ed_fuel_value"
+        android:id="@+id/ed_consumption_winter"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -104,6 +104,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ed_consumption_winter" />
+        app:layout_constraintTop_toBottomOf="@+id/ed_fuel_value" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
