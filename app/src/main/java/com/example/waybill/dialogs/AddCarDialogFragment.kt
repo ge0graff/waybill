@@ -30,7 +30,7 @@ class AddCarDialogFragment(val adapter: CarsRecyclerAdapter): DialogFragment() {
 
             val car = Cars(null, ed_car_name.text.toString(), ed_car_mileage.text.toString(),
                 ed_consumption_summer.text.toString(), ed_fuel_value.text.toString(),
-                ed_fuel_value.text.toString()+" л")
+                ed_fuel_value.text.toString())
             db.carsDao().insert(car)
             adapter.addCar(car)
             dismiss()

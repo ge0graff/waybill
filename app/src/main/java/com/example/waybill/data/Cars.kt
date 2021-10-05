@@ -11,6 +11,6 @@ data class Cars (
                  val mileage: String,
                  val consumption_summer: String,
                  val consumption_winter: String,
-                 val fuel_value: String
+                 val fuel_value: String,
 
         )

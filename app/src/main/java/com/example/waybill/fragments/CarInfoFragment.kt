@@ -37,7 +37,7 @@ class CarInfoFragment : Fragment() {
 
 
 
-    fun putText(){
+    private fun putText(){
         binding.carInfoCarNameText.text = arguments?.getString("name")
         binding.carInfoCarMileageValue.text = arguments?.getString("mileage")
         binding.carInfoConsumptionSummerValue.text = arguments?.getString("cSum")
