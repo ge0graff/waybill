@@ -95,11 +95,11 @@ class MainActivity() : AppCompatActivity(), CarsRecyclerAdapter.ClickEventHandle
         val pref = getSharedPreferences("Car", 0)
 
         SelectedCar.id = pref.getInt("prefId", -1)
-        SelectedCar.name = pref.getString("prefNM", "")!!
-        SelectedCar.mileage = pref.getString("prefML", "")!!
-        SelectedCar.consumption_summer = pref.getString("prefCS", "")!!
-        SelectedCar.consumption_winter = pref.getString("prefCW", "")!!
-        SelectedCar.fuel_value = pref.getString("prefFV", "")!!
+        SelectedCar.name = pref.getString("prefNM", "").toString()
+        SelectedCar.mileage = pref.getString("prefML", "").toString()
+        SelectedCar.consumption_summer = pref.getString("prefCS", "").toString()
+        SelectedCar.consumption_winter = pref.getString("prefCW", "").toString()
+        SelectedCar.fuel_value = pref.getString("prefFV", "").toString()
 
 
     }

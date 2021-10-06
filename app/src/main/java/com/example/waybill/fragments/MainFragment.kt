@@ -1,20 +1,26 @@
 package com.example.waybill.fragments
 
-import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import com.example.waybill.MainActivity
 import com.example.waybill.cars.CarsRecyclerAdapter
+import com.example.waybill.data.Cars
+import com.example.waybill.data.CarsDao
+import com.example.waybill.data.CarsDatabase
 import com.example.waybill.data.carselect.SelectedCar
 import com.example.waybill.databinding.FragmentMainBinding
-import kotlinx.android.synthetic.main.fragment_main.*
 
 
-class MainFragment : Fragment() {
+
+class MainFragment() : Fragment(){
     private lateinit var binding: FragmentMainBinding
+    lateinit var carsList: List<Cars>
+    lateinit var dataBase: CarsDatabase
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,6 +28,12 @@ class MainFragment : Fragment() {
     ): View? {
         binding = FragmentMainBinding.inflate(inflater)
         return binding.root
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        dataBase = MainActivity.getInstance(context)
+        carsList = dataBase.carsDao().reedAllData()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,18 +50,31 @@ class MainFragment : Fragment() {
         fun newInstance() = MainFragment()
     }
 
-    @SuppressLint("SetTextI18n")
     fun calculate (){
-        var dMileage: Float
-        var fCL: Float
-        val Mileage = binding.mfMileageValue.text.toString()
-        val ML = SelectedCar.mileage
-        val fVL = SelectedCar.fuel_value.toFloat()
+        val dailyMileage = binding.mfMileageValue.text.toString()
+        val mileageSum: Float
+        val fuelBalance: Float
+        val mileage = SelectedCar.mileage
+        val fuelValue = SelectedCar.fuel_value.toFloat()
         val con = SelectedCar.consumption_summer.toFloat()
-        dMileage = Mileage.toFloat() - ML.toFloat()
-        fCL = (fVL - (dMileage / 100 * con))
-        binding.mfCarDailyMileageValue.text = dMileage.toInt().toString() + " км"
-        binding.mfFuelValue.text = fCL.toInt().toString() + " л"
+
+        if (dailyMileage != ""){
+            mileageSum = dailyMileage.toFloat() - mileage.toFloat()
+            fuelBalance = (fuelValue - (con / 100 * mileageSum))
+            binding.mfCarDailyMileageValue.text = mileageSum.toInt().toString() + " км"
+            binding.mfFuelValue.text = fuelBalance.toInt().toString() + " л"
+
+//            if(car.id == SelectedCar.id){
+//            car.mileage = mileageSum.toString()
+//            car.fuel_value = fuelBalance.toString()
+//            dataBase.carsDao().update(car)
+//        }
+        }else{
+            Toast.makeText(context, "Введите значение", Toast.LENGTH_LONG).show()
+        }
+
+
+
 
 
     }

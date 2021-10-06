@@ -19,7 +19,7 @@
             android:text="Пробег за смену:"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.428"
+            app:layout_constraintHorizontal_bias="0.376"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mf_calculate" />
 
@@ -31,7 +31,7 @@
             android:text="Остаток топлива:"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.434"
+            app:layout_constraintHorizontal_bias="0.382"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mf_car_daily_mileage_text" />
 
@@ -111,6 +111,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mf_car_name" />
+
+        <Button
+            android:id="@+id/mf_save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:text="сохранить"
+            app:layout_constraintEnd_toEndOf="@+id/mf_calculate"
+            app:layout_constraintStart_toStartOf="@+id/mf_calculate"
+            app:layout_constraintTop_toBottomOf="@+id/mf_fuel_value_text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

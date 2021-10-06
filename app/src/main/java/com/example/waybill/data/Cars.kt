@@ -7,10 +7,10 @@ import androidx.room.PrimaryKey
 data class Cars (
                 @PrimaryKey(autoGenerate = true)
                  val id: Int?,
-                 val name: String,
-                 val mileage: String,
-                 val consumption_summer: String,
-                 val consumption_winter: String,
-                 val fuel_value: String,
+                 var name: String,
+                 var mileage: String,
+                 var consumption_summer: String,
+                 var consumption_winter: String,
+                 var fuel_value: String,
 
         )
