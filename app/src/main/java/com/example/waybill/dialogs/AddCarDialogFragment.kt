@@ -9,13 +9,15 @@ import androidx.fragment.app.DialogFragment
 import com.example.waybill.MainActivity
 import com.example.waybill.R
 import com.example.waybill.cars.CarsRecyclerAdapter
-import com.example.waybill.data.Cars
+import com.example.waybill.data.manager.DatabaseManagerHolder
+import com.example.waybill.data.model.Car
 import kotlinx.android.synthetic.main.add_car_dialog.*
 import kotlinx.android.synthetic.main.add_car_dialog.view.*
 
 
 class AddCarDialogFragment(val adapter: CarsRecyclerAdapter): DialogFragment() {
 
+    private val databaseManager = DatabaseManagerHolder.databaseManager
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,18 +25,15 @@ class AddCarDialogFragment(val adapter: CarsRecyclerAdapter): DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.add_car_dialog, container, false)
-        val db = MainActivity.getInstance(requireContext())
-
-
         rootView.bt_add_car.setOnClickListener {
 
-            val car = Cars(null, ed_car_name.text.toString(), ed_car_mileage.text.toString(),
+            val car = Car(null, ed_car_name.text.toString(), ed_car_mileage.text.toString(),
                 ed_consumption_summer.text.toString(), ed_fuel_value.text.toString(),
                 ed_fuel_value.text.toString())
-            db.carsDao().insert(car)
+            databaseManager.insertCar(car)
             adapter.addCar(car)
             dismiss()
-            }
+        }
 
 
         return rootView

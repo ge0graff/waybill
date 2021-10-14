@@ -8,32 +8,26 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.waybill.MainActivity
-import com.example.waybill.cars.CarsRecyclerAdapter
-import com.example.waybill.data.Cars
-import com.example.waybill.data.CarsDao
+import com.example.waybill.data.model.Car
 import com.example.waybill.data.CarsDatabase
 import com.example.waybill.data.carselect.SelectedCar
+import com.example.waybill.data.manager.DatabaseManagerHolder
 import com.example.waybill.databinding.FragmentMainBinding
 
 
 
 class MainFragment() : Fragment(){
     private lateinit var binding: FragmentMainBinding
-    lateinit var carsList: List<Cars>
-    lateinit var dataBase: CarsDatabase
+
+    private val databaseManager = DatabaseManagerHolder.databaseManager
+    private var carList: List<Car> = databaseManager?.getCars() ?: listOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentMainBinding.inflate(inflater)
         return binding.root
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        dataBase = MainActivity.getInstance(context)
-        carsList = dataBase.carsDao().reedAllData()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,7 +36,6 @@ class MainFragment() : Fragment(){
         binding.mfCalculate.setOnClickListener {
             calculate()
         }
-
     }
 
     companion object {
@@ -50,7 +43,7 @@ class MainFragment() : Fragment(){
         fun newInstance() = MainFragment()
     }
 
-    fun calculate (){
+    fun calculate () {
         val dailyMileage = binding.mfMileageValue.text.toString()
         val mileageSum: Float
         val fuelBalance: Float
@@ -64,11 +57,14 @@ class MainFragment() : Fragment(){
             binding.mfCarDailyMileageValue.text = mileageSum.toInt().toString() + " км"
             binding.mfFuelValue.text = fuelBalance.toInt().toString() + " л"
 
-//            if(car.id == SelectedCar.id){
-//            car.mileage = mileageSum.toString()
-//            car.fuel_value = fuelBalance.toString()
-//            dataBase.carsDao().update(car)
-//        }
+            databaseManager.getCar(SelectedCar.id)?.let {
+                databaseManager.updateCar(
+                    it.apply {
+                        this.mileage = mileageSum.toString()
+                        this.fuel_value = fuelBalance.toString()
+                    }
+                )
+            }
         }else{
             Toast.makeText(context, "Введите значение", Toast.LENGTH_LONG).show()
         }

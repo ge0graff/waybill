@@ -1,21 +1,19 @@
 package com.example.waybill
 
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.room.Room
 import com.example.waybill.cars.CarsRecyclerAdapter
-import com.example.waybill.data.Cars
-import com.example.waybill.data.CarsDatabase
+import com.example.waybill.data.model.Car
 import com.example.waybill.data.carselect.SelectedCar
+import com.example.waybill.data.manager.DatabaseManagerHolder
 import com.example.waybill.databinding.ActivityMainBinding
 import com.example.waybill.fragments.*
 
 
-class MainActivity() : AppCompatActivity(), CarsRecyclerAdapter.ClickEventHandler {
+class MainActivity() : AppCompatActivity() {
     private lateinit var bindingMain: ActivityMainBinding
-    val mainFragment = MainFragment.newInstance()
+    private val mainFragment = MainFragment.newInstance()
     private val carsFragment = CarsFragment.newInstance()
     private val listFragment = ListFragment.newInstance()
 
@@ -24,35 +22,12 @@ class MainActivity() : AppCompatActivity(), CarsRecyclerAdapter.ClickEventHandle
         super.onCreate(savedInstanceState)
         bindingMain = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bindingMain.root)
-            supportFragmentManager.beginTransaction().replace(R.id.fragment_holder,
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_holder,
             MainFragment.newInstance()).commit()
-        navigation()
-        carSelect()
+        setupNavigation()
     }
 
-    companion object {
-        @Volatile
-        private var INSTANCE: CarsDatabase? = null
-        fun getInstance(context: Context): CarsDatabase {
-            synchronized(this) {
-                var instance = INSTANCE
-
-                if (instance == null) {
-                    instance = Room.databaseBuilder(
-                        context.applicationContext,
-                        CarsDatabase::class.java,
-                        "car_table"
-                    )
-                        .allowMainThreadQueries()
-                        .build()
-                    INSTANCE = instance
-                }
-                return instance
-            }
-        }
-    }
-
-    private fun navigation (){
+    private fun setupNavigation() {
         bindingMain.bottonNavigation.selectedItemId = R.id.main
         bindingMain.bottonNavigation.setOnNavigationItemSelectedListener{
             when(it.itemId){
@@ -79,7 +54,7 @@ class MainActivity() : AppCompatActivity(), CarsRecyclerAdapter.ClickEventHandle
         }
     }
 
-    override fun forwardClick(car: Cars) {
+    fun forwardClick(car: Car) {
         val bundle = Bundle()
         bundle.putString("name", car.name)
         bundle.putString("mileage", car.mileage)
@@ -90,22 +65,6 @@ class MainActivity() : AppCompatActivity(), CarsRecyclerAdapter.ClickEventHandle
         supportFragmentManager.beginTransaction().replace(R.id.fragment_holder,
             CarInfoFragment.getNewInstance(arg = bundle)).addToBackStack(null).commit()
     }
-
-    private fun carSelect(){
-        val pref = getSharedPreferences("Car", 0)
-
-        SelectedCar.id = pref.getInt("prefId", -1)
-        SelectedCar.name = pref.getString("prefNM", "").toString()
-        SelectedCar.mileage = pref.getString("prefML", "").toString()
-        SelectedCar.consumption_summer = pref.getString("prefCS", "").toString()
-        SelectedCar.consumption_winter = pref.getString("prefCW", "").toString()
-        SelectedCar.fuel_value = pref.getString("prefFV", "").toString()
-
-
-    }
-
-
-
 }
 
 
