@@ -1,17 +1,16 @@
 package com.example.waybill
 
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.waybill.cars.CarsRecyclerAdapter
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import com.example.waybill.cars.CarForwardClick
 import com.example.waybill.data.model.Car
-import com.example.waybill.data.carselect.SelectedCar
-import com.example.waybill.data.manager.DatabaseManagerHolder
 import com.example.waybill.databinding.ActivityMainBinding
 import com.example.waybill.fragments.*
 
 
-class MainActivity() : AppCompatActivity() {
+class MainActivity() : AppCompatActivity(), CarForwardClick {
     private lateinit var bindingMain: ActivityMainBinding
     private val mainFragment = MainFragment.newInstance()
     private val carsFragment = CarsFragment.newInstance()
@@ -54,7 +53,7 @@ class MainActivity() : AppCompatActivity() {
         }
     }
 
-    fun forwardClick(car: Car) {
+    override fun forwardClick(car: Car) {
         val bundle = Bundle()
         bundle.putString("name", car.name)
         bundle.putString("mileage", car.mileage)

@@ -1,6 +1,5 @@
 package com.example.waybill.data.dao
 
-
 import androidx.room.*
 import com.example.waybill.data.model.Car
 
@@ -22,6 +21,4 @@ interface CarsDao {
 
     @Delete
     fun delete (car: Car)
-
-
 }

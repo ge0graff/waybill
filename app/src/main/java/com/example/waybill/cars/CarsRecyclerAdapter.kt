@@ -1,6 +1,7 @@
-  package com.example.waybill.cars
+package com.example.waybill.cars
 
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +11,10 @@ import com.example.waybill.data.carselect.SelectedCar
 import com.example.waybill.data.model.Car
 import com.example.waybill.databinding.CarItemBinding
 
-class CarsRecyclerAdapter(private var carList: List<Car>): RecyclerView.Adapter<CarsRecyclerAdapter.CarsHolder>() {
+  class CarsRecyclerAdapter(context: Context, private var carList: List<Car>): RecyclerView.Adapter<CarsRecyclerAdapter.CarsHolder>(){
 
     var carActionListener: CarActionListener? = null
+    var clickHandler: CarForwardClick = context as CarForwardClick
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarsHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.car_item, parent, false)
@@ -30,6 +32,7 @@ class CarsRecyclerAdapter(private var carList: List<Car>): RecyclerView.Adapter<
     fun addCar(car: Car){
         (carList as MutableList).add(car)
         notifyItemInserted(carList.size - 1)
+
     }
 
     fun removeItem(position: Int){
@@ -46,6 +49,10 @@ class CarsRecyclerAdapter(private var carList: List<Car>): RecyclerView.Adapter<
             carItemCarName.text = car.name
             carItemMileage.text = car.mileage + " км"
 
+            rcInfoButton.setOnClickListener {
+                clickHandler.forwardClick(car)
+            }
+
             itemView.setOnClickListener {
                 SelectedCar.apply {
                     id = car.id ?: 0
@@ -58,6 +65,7 @@ class CarsRecyclerAdapter(private var carList: List<Car>): RecyclerView.Adapter<
                 notifyDataSetChanged()
             }
 
+
             if (car.id == SelectedCar.id){
                 rcDoneButton.visibility = View.VISIBLE
             } else{
@@ -65,4 +73,6 @@ class CarsRecyclerAdapter(private var carList: List<Car>): RecyclerView.Adapter<
             }
         }
     }
+
+
 }

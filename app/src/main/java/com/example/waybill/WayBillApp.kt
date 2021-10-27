@@ -1,12 +1,12 @@
 package com.example.waybill
 
 import android.app.Application
-import com.example.waybill.data.manager.DatabaseManagerHolder
+import com.example.waybill.data.managers.CarsDatabaseManagerHolder
 
 class WayBillApp: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        DatabaseManagerHolder.buildManagers(this)
+        CarsDatabaseManagerHolder.buildManagers(this)
     }
 }

@@ -7,28 +7,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.waybill.R
 import com.example.waybill.cars.CarActionListener
 import com.example.waybill.cars.CarsRecyclerAdapter
-import com.example.waybill.data.manager.DatabaseManagerHolder
+import com.example.waybill.data.managers.CarsDatabaseManagerHolder
 import com.example.waybill.data.model.Car
 import com.example.waybill.databinding.FragmentCarsBinding
 import com.example.waybill.dialogs.AddCarDialogFragment
-import kotlinx.android.synthetic.main.fragment_cars.*
 
 
 class CarsFragment : Fragment(R.layout.fragment_cars), CarActionListener {
     private lateinit var binding: FragmentCarsBinding
-    private val databaseManager = DatabaseManagerHolder.databaseManager
+    private val databaseManager = CarsDatabaseManagerHolder.carsDatabaseManager
 
     private var carList: List<Car> = databaseManager.getCars() ?: listOf()
     lateinit var adapter: CarsRecyclerAdapter
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        adapter = CarsRecyclerAdapter(carList).also {
+        adapter = CarsRecyclerAdapter(context, carList).also {
             it.carActionListener = this
         }
     }
@@ -81,4 +79,5 @@ class CarsFragment : Fragment(R.layout.fragment_cars), CarActionListener {
     override fun removeCar(car: Car) {
         databaseManager.deleteCar(car)
     }
+
 }
