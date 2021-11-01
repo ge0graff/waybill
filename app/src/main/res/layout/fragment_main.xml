@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.MainFragment">
+    tools:context=".presentation.ui.fragments.MainFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -88,6 +88,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mf_car_name" />
 
+        <TextView
+            android:id="@+id/mf_refulel_text"
+            android:layout_width="181dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Заправлено:"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.069"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mf_mileage_text" />
+
         <EditText
             android:id="@+id/mf_mileage_value"
             android:layout_width="0dp"
@@ -102,11 +114,24 @@
             app:layout_constraintVertical_bias="0.0"
             tools:ignore="MissingConstraints" />
 
+        <EditText
+            android:id="@+id/mf_refuel_value"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/mf_refulel_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/mf_mileage_text"
+            app:layout_constraintTop_toTopOf="@+id/mf_refulel_text"
+            tools:ignore="MissingConstraints" />
+
         <Button
             android:id="@+id/mf_calculate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="140dp"
+            android:layout_marginTop="208dp"
             android:text="рассчитать"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

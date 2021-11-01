@@ -1,4 +1,4 @@
-package com.example.waybill.fragments
+package com.example.waybill.presentation.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,7 +11,7 @@ import com.example.waybill.databinding.FragmentCarInfoBinding
 class CarInfoFragment : Fragment() {
 
     companion object{
-        fun getNewInstance(arg: Bundle?): CarInfoFragment{
+        fun getNewInstance(arg: Bundle?): CarInfoFragment {
             val carInfoFragment = CarInfoFragment()
             carInfoFragment.arguments = arg
             return carInfoFragment
@@ -32,10 +32,18 @@ class CarInfoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+    }
+
+    override fun onStart() {
+        super.onStart()
         putText()
     }
 
-
+    override fun onDestroy() {
+        super.onDestroy()
+        returnText()
+    }
 
     private fun putText(){
         binding.carInfoCarNameText.text = arguments?.getString("name")
@@ -44,4 +52,14 @@ class CarInfoFragment : Fragment() {
         binding.carInfoConsumptionWinterValue.text = arguments?.getString("cWin")
         binding.carInfoFuelValue.text = arguments?.getString("fuel")
     }
+    private fun returnText(){
+        binding.carInfoCarNameText.text = ""
+        binding.carInfoCarMileageValue.text = ""
+        binding.carInfoConsumptionSummerValue.text = ""
+        binding.carInfoConsumptionWinterValue.text = ""
+        binding.carInfoFuelValue.text = ""
+    }
+
+
 }
+

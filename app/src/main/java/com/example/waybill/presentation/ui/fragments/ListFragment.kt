@@ -1,4 +1,4 @@
-package com.example.waybill.fragments
+package com.example.waybill.presentation.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -7,14 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.waybill.R
-import com.example.waybill.cars.CarsRecyclerAdapter
-import com.example.waybill.databinding.FragmentCarsBinding
 import com.example.waybill.databinding.FragmentListBinding
-import com.example.waybill.dialogs.AddCarDialogFragment
-import com.example.waybill.lists.ListRecyclerAdapter
-import com.example.waybill.lists.Mouths
-import kotlinx.android.synthetic.main.fragment_list.*
+import com.example.waybill.presentation.ui.recyclerviews.lists.ListRecyclerAdapter
+import com.example.waybill.presentation.ui.recyclerviews.lists.Mouths
 
 
 class ListFragment : Fragment() {

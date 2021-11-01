@@ -1,4 +1,4 @@
-package com.example.waybill.lists
+package com.example.waybill.presentation.ui.recyclerviews.lists
 
 import android.view.LayoutInflater
 import android.view.View

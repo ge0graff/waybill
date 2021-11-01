@@ -1,13 +1,16 @@
-package com.example.waybill
+package com.example.waybill.domain
 
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.example.waybill.cars.CarForwardClick
+import com.example.waybill.R
+import com.example.waybill.presentation.ui.recyclerviews.cars.CarForwardClick
 import com.example.waybill.data.model.Car
 import com.example.waybill.databinding.ActivityMainBinding
-import com.example.waybill.fragments.*
+import com.example.waybill.presentation.ui.fragments.CarInfoFragment
+import com.example.waybill.presentation.ui.fragments.CarsFragment
+import com.example.waybill.presentation.ui.fragments.ListFragment
+import com.example.waybill.presentation.ui.fragments.MainFragment
 
 
 class MainActivity() : AppCompatActivity(), CarForwardClick {
@@ -21,7 +24,8 @@ class MainActivity() : AppCompatActivity(), CarForwardClick {
         super.onCreate(savedInstanceState)
         bindingMain = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bindingMain.root)
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_holder,
+        supportFragmentManager.beginTransaction().replace(
+            R.id.fragment_holder,
             MainFragment.newInstance()).commit()
         setupNavigation()
     }
@@ -61,7 +65,8 @@ class MainActivity() : AppCompatActivity(), CarForwardClick {
         bundle.putString("cWin", car.consumption_winter)
         bundle.putString("fuel", car.fuel_value)
         CarInfoFragment.getNewInstance(arg = bundle)
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_holder,
+        supportFragmentManager.beginTransaction().replace(
+            R.id.fragment_holder,
             CarInfoFragment.getNewInstance(arg = bundle)).addToBackStack(null).commit()
     }
 }

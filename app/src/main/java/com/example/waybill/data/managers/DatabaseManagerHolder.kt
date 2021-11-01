@@ -4,20 +4,20 @@ import android.content.Context
 import androidx.room.Room
 import com.example.waybill.data.Database
 
-object CarsDatabaseManagerHolder {
+object DatabaseManagerHolder {
 
-    var carsDatabaseManager: CarsDatabaseManager = CarsDatabaseManager(null)
+    var databaseManager: DatabaseManager = DatabaseManager(null)
     get() {
-        if (!field.isBuild()) throw Exception("Please build managers")
+        if (!field.carsDaoBuild() && !field.waybillsDaoBuild()) throw Exception("Please build managers")
         else return field
     }
 
-    fun buildManagers(context: Context) {
-        carsDatabaseManager = CarsDatabaseManager(
+    fun buildDatabaseManagers(context: Context) {
+        databaseManager = DatabaseManager(
             Room.databaseBuilder(
                 context.applicationContext,
                 Database::class.java,
-                "car_table"
+                "my_database"
             )
                 .allowMainThreadQueries()
                 .build()
@@ -26,24 +26,24 @@ object CarsDatabaseManagerHolder {
 
 }
 
-object ListDatabaseManagerHolder {
-
-    var listDatabaseManager: ListDatabaseManager = ListDatabaseManager(null)
-        get() {
-            if (!field.isBuild()) throw Exception("Please build managers")
-            else return field
-        }
-
-    fun buildManagers(context: Context) {
-        listDatabaseManager = ListDatabaseManager(
-            Room.databaseBuilder(
-                context.applicationContext,
-                Database::class.java,
-                "car_table"
-            )
-                .allowMainThreadQueries()
-                .build()
-        )
-    }
-
-}
+//object WaybillsDatabaseManagerHolder {
+//
+//    var waybillsDatabaseManager: WaybillsDatabaseManager = WaybillsDatabaseManager(null)
+//        get() {
+//            if (!field.isBuild()) throw Exception("Please build managers")
+//            else return field
+//        }
+//
+//    fun buildWaybillsDatabaseManagers(context: Context) {
+//        waybillsDatabaseManager = WaybillsDatabaseManager(
+//            Room.databaseBuilder(
+//                context.applicationContext,
+//                Database::class.java,
+//                "waybills_table"
+//            )
+//                .allowMainThreadQueries()
+//                .build()
+//        )
+//    }
+//
+//}

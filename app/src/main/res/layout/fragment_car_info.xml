@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.CarInfoFragment">
+    tools:context=".presentation.ui.fragments.CarInfoFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/car_info_car_mi_text"
+        android:id="@+id/car_info_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

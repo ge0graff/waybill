@@ -8,9 +8,9 @@ data class Waybills (
     @PrimaryKey(autoGenerate = true)
     val id: Int?,
     val carId: Int?,
-    val data: String,
     val mileage: String,
     val dailyMileage: String,
     val fuelValue: String,
     val refueling: String,
+    val mouth: String
 )

@@ -2,12 +2,15 @@ package com.example.waybill.data.managers
 
 import com.example.waybill.data.Database
 import com.example.waybill.data.model.Car
+import com.example.waybill.data.model.Waybills
 
-class CarsDatabaseManager(database: Database?) {
+class DatabaseManager(database: Database?) {
+
+//  cars entity
 
     private val carsDao = database?.carsDao()
 
-    fun isBuild() = carsDao != null
+    fun carsDaoBuild() = carsDao != null
 
     fun insertCar(car: Car) = carsDao?.insert(car)
 
@@ -27,30 +30,28 @@ class CarsDatabaseManager(database: Database?) {
 
     fun getCar(id: Int) = carsDao?.getById(id)
 
-}
+//  waybills entity
 
-class ListDatabaseManager(database: Database?) {
+    private val waybillsDao = database?.waybillsDao()
 
-    private val listsDao = database?.carsDao()
+    fun waybillsDaoBuild() = waybillsDao != null
 
-    fun isBuild() = listsDao != null
+    fun insertWaybills(waybills: Waybills) = waybillsDao?.insert(waybills)
 
-    fun insertCar(car: Car) = listsDao?.insert(car)
-
-    fun insertCars(cars: List<Car>) {
-        cars.forEach { listsDao?.insert(it) }
+    fun insertWaybills(waybills: List<Waybills>) {
+        waybills.forEach { waybillsDao?.insert(it) }
     }
 
-    fun updateCar(car: Car) = listsDao?.update(car)
+    fun updateWaybills(waybills: Waybills) = waybillsDao?.update(waybills)
 
-    fun deleteCar(car: Car) = listsDao?.delete(car)
+    fun deleteWaybills(waybills: Waybills) = waybillsDao?.delete(waybills)
 
-    fun deleteCard(cars: List<Car>) {
-        cars.forEach { listsDao?.delete(it) }
+    fun deleteWaybills(waybills: List<Waybills>) {
+        waybills.forEach { waybillsDao?.delete(it) }
     }
 
-    fun getCars() = listsDao?.reedAllData()
+    fun getWaybills() = waybillsDao?.reedAllData()
 
-    fun getCar(id: Int) = listsDao?.getById(id)
+    fun getWaybills(id: Int) = waybillsDao?.getById(id)
 
 }

@@ -1,4 +1,4 @@
-package com.example.waybill.cars
+package com.example.waybill.presentation.ui.recyclerviews.cars
 
 import com.example.waybill.data.model.Car
 

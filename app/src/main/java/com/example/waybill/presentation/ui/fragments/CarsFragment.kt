@@ -1,4 +1,4 @@
-package com.example.waybill.fragments
+package com.example.waybill.presentation.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -9,17 +9,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.waybill.R
-import com.example.waybill.cars.CarActionListener
-import com.example.waybill.cars.CarsRecyclerAdapter
-import com.example.waybill.data.managers.CarsDatabaseManagerHolder
+import com.example.waybill.presentation.ui.recyclerviews.cars.CarActionListener
+import com.example.waybill.presentation.ui.recyclerviews.cars.CarsRecyclerAdapter
+import com.example.waybill.data.managers.DatabaseManagerHolder
 import com.example.waybill.data.model.Car
 import com.example.waybill.databinding.FragmentCarsBinding
-import com.example.waybill.dialogs.AddCarDialogFragment
+import com.example.waybill.presentation.ui.dialogs.AddCarDialogFragment
 
 
 class CarsFragment : Fragment(R.layout.fragment_cars), CarActionListener {
     private lateinit var binding: FragmentCarsBinding
-    private val databaseManager = CarsDatabaseManagerHolder.carsDatabaseManager
+    private val databaseManager = DatabaseManagerHolder.databaseManager
 
     private var carList: List<Car> = databaseManager.getCars() ?: listOf()
     lateinit var adapter: CarsRecyclerAdapter
