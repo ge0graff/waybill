@@ -1,17 +1,16 @@
 package com.example.waybill.presentation.ui.recyclerviews.lists
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.waybill.R
-import com.example.waybill.data.model.Mouths
 import com.example.waybill.databinding.ListItemBinding
 
-class ListRecyclerAdapter(
-    private val actionListener: ListForwardClick,
-    private val lists: List<Mouths>
-    ): RecyclerView.Adapter<ListRecyclerAdapter.ListHolder>(){
+class ListRecyclerAdapter(context: Context, private val lists: List<Mouths>): RecyclerView.Adapter<ListRecyclerAdapter.ListHolder>(){
+
+    var clickHandler: ListForwardClick = context as ListForwardClick
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
@@ -34,7 +33,7 @@ class ListRecyclerAdapter(
             binding.mtName.text = mouths.mouths
 
             itemView.setOnClickListener {
-                actionListener.listForwardClick(mouths)
+                clickHandler.listForwardClick(mouths)
             }
 
         }
