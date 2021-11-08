@@ -1,4 +1,4 @@
-package com.example.waybill.data.carselect
+package com.example.waybill.data.objects
 
 object SelectedCar {
     var id = -1

@@ -4,20 +4,25 @@ package com.example.waybill.domain
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.waybill.R
+import com.example.waybill.data.objects.SelectedCar
 import com.example.waybill.presentation.ui.recyclerviews.cars.CarForwardClick
 import com.example.waybill.data.model.Car
+import com.example.waybill.data.objects.DataObject
 import com.example.waybill.databinding.ActivityMainBinding
-import com.example.waybill.presentation.ui.fragments.CarInfoFragment
-import com.example.waybill.presentation.ui.fragments.CarsFragment
-import com.example.waybill.presentation.ui.fragments.ListFragment
-import com.example.waybill.presentation.ui.fragments.MainFragment
+import com.example.waybill.presentation.ui.fragments.*
+import com.example.waybill.presentation.ui.recyclerviews.lists.ListForwardClick
+import com.example.waybill.presentation.ui.recyclerviews.lists.Mouths
+import java.text.DateFormat
+import java.util.*
 
 
-class MainActivity() : AppCompatActivity(), CarForwardClick {
+class MainActivity() : AppCompatActivity(), CarForwardClick, ListForwardClick {
     private lateinit var bindingMain: ActivityMainBinding
     private val mainFragment = MainFragment.newInstance()
     private val carsFragment = CarsFragment.newInstance()
     private val listFragment = ListFragment.newInstance()
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +62,7 @@ class MainActivity() : AppCompatActivity(), CarForwardClick {
         }
     }
 
-    override fun forwardClick(car: Car) {
+    override fun carForwardClick(car: Car) {
         val bundle = Bundle()
         bundle.putString("name", car.name)
         bundle.putString("mileage", car.mileage)
@@ -69,6 +74,16 @@ class MainActivity() : AppCompatActivity(), CarForwardClick {
             R.id.fragment_holder,
             CarInfoFragment.getNewInstance(arg = bundle)).addToBackStack(null).commit()
     }
+
+    override fun listForwardClick(mouths: Mouths) {
+            DataObject.mouthId = mouths.id
+            val bundle = Bundle()
+        bundle.putString("mouthId", mouths.id)
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_holder,
+        WaybillFragment.getNewInstance(arg = bundle)).addToBackStack(null).commit()
+    }
+
+
 }
 
 

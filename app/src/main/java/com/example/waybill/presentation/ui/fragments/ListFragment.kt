@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.waybill.databinding.FragmentListBinding
+import com.example.waybill.presentation.ui.recyclerviews.lists.ListForwardClick
 import com.example.waybill.presentation.ui.recyclerviews.lists.ListRecyclerAdapter
 import com.example.waybill.presentation.ui.recyclerviews.lists.Mouths
 
@@ -20,7 +21,7 @@ class ListFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        adapter = ListRecyclerAdapter(mouths)
+        adapter = ListRecyclerAdapter(context, mouths)
     }
 
     override fun onCreateView(
@@ -49,25 +50,23 @@ class ListFragment : Fragment() {
 
     private fun fillList(){
         mouths.apply {
-            add(Mouths(("Январь")))
-            add(Mouths(("Февраль")))
-            add(Mouths(("Март")))
-            add(Mouths(("Апрель")))
-            add(Mouths(("Май")))
-            add(Mouths(("Июнь")))
-            add(Mouths(("Июль")))
-            add(Mouths(("Август")))
-            add(Mouths(("Сентябрь")))
-            add(Mouths(("Ноябрь")))
-            add(Mouths(("Декабрь")))
+            add(Mouths("Январь", "01"))
+            add(Mouths("Февраль", "02"))
+            add(Mouths("Март", "03"))
+            add(Mouths("Апрель", "04"))
+            add(Mouths("Май", "05"))
+            add(Mouths("Июнь", "06"))
+            add(Mouths("Июль", "07"))
+            add(Mouths("Август", "08"))
+            add(Mouths("Сентябрь", "09"))
+            add(Mouths("Октябрь", "10"))
+            add(Mouths("Ноябрь", "11"))
+            add(Mouths("Декабрь", "12"))
         }
 
         binding.lstRcv.layoutManager = LinearLayoutManager(requireContext())
         binding.lstRcv.hasFixedSize()
         binding.lstRcv.adapter = adapter
     }
-
-
-
 
 }

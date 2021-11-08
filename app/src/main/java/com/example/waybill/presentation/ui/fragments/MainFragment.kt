@@ -6,9 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.example.waybill.data.carselect.SelectedCar
+import com.example.waybill.data.objects.SelectedCar
 import com.example.waybill.data.managers.DatabaseManagerHolder
 import com.example.waybill.data.model.Waybills
+import com.example.waybill.data.objects.DataObject
 import com.example.waybill.databinding.FragmentMainBinding
 import kotlin.math.roundToInt
 
@@ -87,7 +88,7 @@ class MainFragment() : Fragment(){
                 )
 
             }
-            val waybill = Waybills(null, SelectedCar.id, SelectedCar.mileage, mileageSum.toString(), fuelRemaining.toString(), refuelValue, "10")
+            val waybill = Waybills(null, SelectedCar.id, SelectedCar.mileage, mileageSum.toString(), fuelRemaining.toString(), refuelValue, DataObject.mouths)
                 databaseManager.insertWaybills(waybill)
 
         }

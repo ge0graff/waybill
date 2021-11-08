@@ -20,8 +20,6 @@ class CarInfoFragment : Fragment() {
 
     private lateinit var binding: FragmentCarInfoBinding
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,19 +28,9 @@ class CarInfoFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
-
     override fun onStart() {
         super.onStart()
         putText()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        returnText()
     }
 
     private fun putText(){
@@ -52,14 +40,6 @@ class CarInfoFragment : Fragment() {
         binding.carInfoConsumptionWinterValue.text = arguments?.getString("cWin")
         binding.carInfoFuelValue.text = arguments?.getString("fuel")
     }
-    private fun returnText(){
-        binding.carInfoCarNameText.text = ""
-        binding.carInfoCarMileageValue.text = ""
-        binding.carInfoConsumptionSummerValue.text = ""
-        binding.carInfoConsumptionWinterValue.text = ""
-        binding.carInfoFuelValue.text = ""
-    }
-
 
 }
 

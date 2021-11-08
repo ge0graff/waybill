@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.waybill.R
-import com.example.waybill.data.carselect.SelectedCar
+import com.example.waybill.data.objects.SelectedCar
 import com.example.waybill.data.model.Car
 import com.example.waybill.databinding.CarItemBinding
 
@@ -50,7 +50,7 @@ import com.example.waybill.databinding.CarItemBinding
             carItemMileage.text = car.mileage + " км"
 
             rcInfoButton.setOnClickListener {
-                clickHandler.forwardClick(car)
+                clickHandler.carForwardClick(car)
             }
 
             itemView.setOnClickListener {
@@ -64,7 +64,6 @@ import com.example.waybill.databinding.CarItemBinding
                 }
                 notifyDataSetChanged()
             }
-
 
             if (car.id == SelectedCar.id){
                 rcDoneButton.visibility = View.VISIBLE

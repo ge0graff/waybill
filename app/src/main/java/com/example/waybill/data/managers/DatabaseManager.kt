@@ -38,6 +38,8 @@ class DatabaseManager(database: Database?) {
 
     fun insertWaybills(waybills: Waybills) = waybillsDao?.insert(waybills)
 
+    fun getCarWaybill(id: Int, mouth: String) = waybillsDao?.getCarWaybills(id, mouth)
+
     fun insertWaybills(waybills: List<Waybills>) {
         waybills.forEach { waybillsDao?.insert(it) }
     }
@@ -52,6 +54,8 @@ class DatabaseManager(database: Database?) {
 
     fun getWaybills() = waybillsDao?.reedAllData()
 
-    fun getWaybills(id: Int) = waybillsDao?.getById(id)
+    fun getWaybillsForId(id: Int) = waybillsDao?.getById(id)
+
+
 
 }
