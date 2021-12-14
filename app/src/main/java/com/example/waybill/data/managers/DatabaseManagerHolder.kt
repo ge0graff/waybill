@@ -25,25 +25,3 @@ object DatabaseManagerHolder {
     }
 
 }
-
-//object WaybillsDatabaseManagerHolder {
-//
-//    var waybillsDatabaseManager: WaybillsDatabaseManager = WaybillsDatabaseManager(null)
-//        get() {
-//            if (!field.isBuild()) throw Exception("Please build managers")
-//            else return field
-//        }
-//
-//    fun buildWaybillsDatabaseManagers(context: Context) {
-//        waybillsDatabaseManager = WaybillsDatabaseManager(
-//            Room.databaseBuilder(
-//                context.applicationContext,
-//                Database::class.java,
-//                "waybills_table"
-//            )
-//                .allowMainThreadQueries()
-//                .build()
-//        )
-//    }
-//
-//}

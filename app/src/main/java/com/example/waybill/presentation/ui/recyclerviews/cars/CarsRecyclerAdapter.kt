@@ -7,11 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.waybill.R
-import com.example.waybill.data.objects.SelectedCar
 import com.example.waybill.data.model.Car
+import com.example.waybill.data.objects.SelectedCar
 import com.example.waybill.databinding.CarItemBinding
 
-  class CarsRecyclerAdapter(context: Context, private var carList: List<Car>): RecyclerView.Adapter<CarsRecyclerAdapter.CarsHolder>(){
+  class CarsRecyclerAdapter(context: Context, private var carList: List<Car>):
+      RecyclerView.Adapter<CarsRecyclerAdapter.CarsHolder>(){
 
     var carActionListener: CarActionListener? = null
     var clickHandler: CarForwardClick = context as CarForwardClick
@@ -32,7 +33,6 @@ import com.example.waybill.databinding.CarItemBinding
     fun addCar(car: Car){
         (carList as MutableList).add(car)
         notifyItemInserted(carList.size - 1)
-
     }
 
     fun removeItem(position: Int){

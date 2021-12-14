@@ -12,17 +12,17 @@ class DatabaseManager(database: Database?) {
 
     fun carsDaoBuild() = carsDao != null
 
-    fun insertCar(car: Car) = carsDao?.insert(car)
+    suspend fun insertCar(car: Car) = carsDao?.insert(car)
 
-    fun insertCars(cars: List<Car>) {
+    suspend fun insertCars(cars: List<Car>) {
         cars.forEach { carsDao?.insert(it) }
     }
 
-    fun updateCar(car: Car) = carsDao?.update(car)
+    suspend fun updateCar(car: Car) = carsDao?.update(car)
 
-    fun deleteCar(car: Car) = carsDao?.delete(car)
+    suspend fun deleteCar(car: Car) = carsDao?.delete(car)
 
-    fun deleteCard(cars: List<Car>) {
+    suspend fun deleteCard(cars: List<Car>) {
         cars.forEach { carsDao?.delete(it) }
     }
 

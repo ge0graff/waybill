@@ -5,20 +5,10 @@
     android:id="@+id/ConstrainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".domain.MainActivity"
-    >
-
-    <include
-        android:id="@+id/include"
-        layout="@layout/tool_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context=".presentation.ui.mainActivity.MainActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/botton_navigation"
+        android:id="@+id/buttonNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -30,15 +20,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/button_menu" />
 
-    <FrameLayout
+    <fragment
         android:id="@+id/fragment_holder"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/botton_navigation"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNavigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include">
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/nav_graph">
 
-    </FrameLayout>
+    </fragment>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

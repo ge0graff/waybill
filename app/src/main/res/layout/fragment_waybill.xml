@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.ui.fragments.WaybillFragment">
+    tools:context=".presentation.ui.fragments.waybillfragment.WaybillFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/waybill_fragment"

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/add_car_dialog"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    tools:context=".presentation.ui.dialogs.AddCarDialogFragment">
 
     <TextView
         android:id="@+id/add_car_dialog_title"
@@ -105,5 +106,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ed_fuel_value" />
+
+    <ImageView
+        android:id="@+id/im_car_name_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/ic_baseline_error_24"
+        app:layout_constraintBottom_toBottomOf="@+id/ed_car_name"
+        app:layout_constraintStart_toEndOf="@+id/ed_car_name"
+        app:layout_constraintTop_toTopOf="@+id/ed_car_name"
+        tools:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

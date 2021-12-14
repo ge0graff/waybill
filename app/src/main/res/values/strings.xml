@@ -7,12 +7,13 @@
     <string name="add_list">Добавить</string>
 
     <!-- Add Car Dialog-->
-    <string name="add_car_dialog_title">Добаьте автомобиль</string>
+    <string name="add_car_dialog_title">Добавьте автомобиль</string>
     <string name="add_car_dialog_car_name">Имя:</string>
     <string name="add_car_dialog_car_mileage">Пробег:</string>
     <string name="add_car_dialog_consumption_summer">Расход лето:</string>
     <string name="add_car_dialog_consumption_winter">Расход зима:</string>
     <string name="add_car_dialog_fuel_value">Остаток топлива:</string>
+
 
     <!-- Designations-->
     <string name="designation_km"> км</string>

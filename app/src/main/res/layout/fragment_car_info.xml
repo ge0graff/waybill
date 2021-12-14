@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.ui.fragments.CarInfoFragment">
+    tools:context=".presentation.ui.fragments.carinfofragment.CarInfoFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/car_info_fragment"

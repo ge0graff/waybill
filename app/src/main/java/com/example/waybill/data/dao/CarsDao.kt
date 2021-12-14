@@ -2,23 +2,24 @@ package com.example.waybill.data.dao
 
 import androidx.room.*
 import com.example.waybill.data.model.Car
+import kotlinx.coroutines.flow.Flow
 
 
 @Dao
 interface CarsDao {
 
     @Query("SELECT * FROM cars_table")
-    fun reedAllData(): List<Car>
+    fun reedAllData(): Flow<List<Car>>
 
     @Query("SELECT * FROM cars_table WHERE id = :id")
     fun getById(id: Int): Car
 
-    @Insert
-    fun insert (car: Car)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert (car: Car)
 
     @Update
-    fun update (car: Car)
+    suspend fun update (car: Car)
 
     @Delete
-    fun delete (car: Car)
+    suspend fun delete (car: Car)
 }
