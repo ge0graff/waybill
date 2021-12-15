@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.example.waybill.data.dao.CarsDao
@@ -22,7 +21,6 @@ class AddCarDialogViewModel @ViewModelInject constructor(
 ): AndroidViewModel(application) {
 
     val car = state.get<Car>("car")
-    val carNameLiveData = MutableLiveData<Boolean>()
 
     private fun createCar(car: Car) = viewModelScope.launch(Dispatchers.IO){
         carsDao.insert(car)
@@ -60,38 +58,34 @@ class AddCarDialogViewModel @ViewModelInject constructor(
     val addEditCarEvent =addCarEditChannel.receiveAsFlow()
 
     fun onSaveClick() {
-        when {
-            carName.isBlank() -> {
-                showInvalidInputCarNameMessage("Test")
-                carNameLiveData.value = false
-                return
-            }
-            carMileage.isBlank() -> {
-                showInvalidInputCarMileageMessage("Введите пробег автомобиля")
-                return
-            }
-            consumptionSummer.isBlank() -> {
-                showInvalidInputConsumptionSummerMessage("Введите расход в летнее время")
-                return
-            }
-            consumptionWinter.isBlank() -> {
-                showInvalidInputConsumptionWinterMessage("Введите расход в зимнее время")
-                return
-            }
-            fuelValue.isBlank() -> {
-                showInvalidInputFuelValueMessage("Введите остаток топлива в баке")
-                return
-            }
-            car == null -> {
-                val newCar = Car(null, carName, carMileage, consumptionSummer, consumptionWinter, fuelValue)
-                createCar(newCar)
-            }
+//            if(carName.isBlank()){
+//                showInvalidInputCarNameMessage(true)
+//                return
+//            }
+//            if(carMileage.isBlank()){
+//                showInvalidInputCarMileageMessage("Введите пробег автомобиля")
+//                return
+//            }
+//            if(consumptionSummer.isBlank()){
+//                showInvalidInputConsumptionSummerMessage("Введите расход в летнее время")
+//                return
+//            }
+//            if(consumptionWinter.isBlank()){
+//                showInvalidInputConsumptionWinterMessage("Введите расход в зимнее время")
+//                return
+//            }
+//            if(fuelValue.isBlank()){
+//                showInvalidInputFuelValueMessage("Введите остаток топлива в баке")
+//                return
+//            }
+//            if(car == null){
+//                val newCar = Car(null, carName, carMileage, consumptionSummer, consumptionWinter, fuelValue)
+//                createCar(newCar)
+//            }
         }
-    }
 
-
-    private fun showInvalidInputCarNameMessage(text: String) = viewModelScope.launch {
-        addCarEditChannel.send(AddEditCarEvent.ShowInvalidInputCarNameMessage(text))
+    private fun showInvalidInputCarNameMessage(boolean: Boolean) = viewModelScope.launch {
+        addCarEditChannel.send(AddEditCarEvent.ShowInvalidInputCarNameMessage(boolean))
     }
     private fun showInvalidInputCarMileageMessage(text: String) = viewModelScope.launch {
         addCarEditChannel.send(AddEditCarEvent.ShowInvalidInputCarMileageMessage(text))
@@ -106,17 +100,13 @@ class AddCarDialogViewModel @ViewModelInject constructor(
         addCarEditChannel.send(AddEditCarEvent.ShowInvalidInputFuelValueMessage(text))
     }
 
-
     sealed class AddEditCarEvent {
-        data class ShowInvalidInputCarNameMessage(val msg: String): AddEditCarEvent()
+        data class ShowInvalidInputCarNameMessage(val boolean: Boolean): AddEditCarEvent()
         data class ShowInvalidInputCarMileageMessage(val msg: String): AddEditCarEvent()
         data class ShowInvalidInputConsumptionSummerMessage(val msg: String): AddEditCarEvent()
         data class ShowInvalidInputConsumptionWinterMessage(val msg: String): AddEditCarEvent()
         data class ShowInvalidInputFuelValueMessage(val msg: String): AddEditCarEvent()
         data class DismissDialog(val result: Int): AddEditCarEvent()
-
-
     }
-
-
 }
+

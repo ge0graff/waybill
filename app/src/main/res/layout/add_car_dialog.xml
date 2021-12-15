@@ -113,9 +113,58 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:src="@drawable/ic_baseline_error_24"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/ed_car_name"
         app:layout_constraintStart_toEndOf="@+id/ed_car_name"
         app:layout_constraintTop_toTopOf="@+id/ed_car_name"
-        tools:visibility="gone" />
+        tools:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/im_car_mileage_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/ic_baseline_error_24"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/ed_car_mileage"
+        app:layout_constraintStart_toEndOf="@+id/ed_car_mileage"
+        app:layout_constraintTop_toTopOf="@+id/ed_car_mileage"
+        tools:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/im_car_cs_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/ic_baseline_error_24"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/ed_consumption_summer"
+        app:layout_constraintStart_toEndOf="@+id/ed_consumption_summer"
+        app:layout_constraintTop_toTopOf="@+id/ed_consumption_summer"
+        tools:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/im_car_cw_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/ic_baseline_error_24"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/ed_consumption_winter"
+        app:layout_constraintStart_toEndOf="@+id/ed_consumption_winter"
+        app:layout_constraintTop_toTopOf="@+id/ed_consumption_winter"
+        tools:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/im_fuel_value_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/ic_baseline_error_24"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/ed_fuel_value"
+        app:layout_constraintStart_toEndOf="@+id/ed_fuel_value"
+        app:layout_constraintTop_toTopOf="@+id/ed_fuel_value"
+        tools:visibility="invisible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
