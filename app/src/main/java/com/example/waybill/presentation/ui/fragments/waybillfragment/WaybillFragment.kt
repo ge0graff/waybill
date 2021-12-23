@@ -16,38 +16,38 @@ import com.example.waybill.presentation.ui.recyclerviews.lists.WaybillRecyclerAd
 import java.util.*
 
 
-class WaybillFragment : Fragment() {
-
-    companion object{
-        fun getNewInstance(arg: Bundle?): WaybillFragment {
-            val waybillFragment = WaybillFragment()
-            waybillFragment.arguments = arg
-            return waybillFragment
-        }
-    }
-    private lateinit var binding: FragmentWaybillBinding
-    private val databaseManager = DatabaseManagerHolder.databaseManager
-    private val carId = SelectedCar.id
-    private var waybillList = databaseManager.getCarWaybill(carId, DataObject.mouthId) ?: listOf()
-    lateinit var adapter: WaybillRecyclerAdapter
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        adapter = WaybillRecyclerAdapter(waybillList)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentWaybillBinding.inflate(inflater)
-        return binding.root
-    }
-
-    override fun onStart() {
-        super.onStart()
-        binding.waybillRcView.adapter = adapter
-        binding.waybillRcView.layoutManager = LinearLayoutManager(requireContext())
-        val data = Calendar.getInstance().time
-    }
-}
+//class WaybillFragment : Fragment() {
+//
+//    companion object{
+//        fun getNewInstance(arg: Bundle?): WaybillFragment {
+//            val waybillFragment = WaybillFragment()
+//            waybillFragment.arguments = arg
+//            return waybillFragment
+//        }
+//    }
+//    private lateinit var binding: FragmentWaybillBinding
+//    private val databaseManager = DatabaseManagerHolder.databaseManager
+//    private val carId = SelectedCar.id
+//    private var waybillList = databaseManager.getCarWaybill(carId, DataObject.mouthId) ?: listOf()
+//    lateinit var adapter: WaybillRecyclerAdapter
+//
+//    override fun onAttach(context: Context) {
+//        super.onAttach(context)
+//        adapter = WaybillRecyclerAdapter(waybillList)
+//    }
+//
+//    override fun onCreateView(
+//        inflater: LayoutInflater, container: ViewGroup?,
+//        savedInstanceState: Bundle?
+//    ): View? {
+//        binding = FragmentWaybillBinding.inflate(inflater)
+//        return binding.root
+//    }
+//
+//    override fun onStart() {
+//        super.onStart()
+//        binding.waybillRcView.adapter = adapter
+//        binding.waybillRcView.layoutManager = LinearLayoutManager(requireContext())
+//        val data = Calendar.getInstance().time
+//    }
+//}

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_carsFragment_to_addCarDialogFragment"
             app:destination="@id/addCarDialogFragment" />
+        <action
+            android:id="@+id/action_carsFragment_to_carInfoFragment"
+            app:destination="@id/carInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/addCarDialogFragment"

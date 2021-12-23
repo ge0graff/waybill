@@ -14,16 +14,16 @@ interface WaybillsDao {
     fun getById(id: Int): Flow<Waybills>
 
     @Query("SELECT * FROM waybills_table WHERE carId = :id AND mouth = :mouth")
-    fun getCarWaybills(id: Int, mouth: String): List<Waybills>
+    fun getCarWaybills(id: Int, mouth: String): Flow<List<Waybills>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert (list: Waybills)
+    suspend fun insert (list: Waybills)
 
     @Update
-    fun update (list: Waybills)
+    suspend fun update (list: Waybills)
 
     @Delete
-    fun delete (list: Waybills)
+    suspend fun delete (list: Waybills)
 
 
 }

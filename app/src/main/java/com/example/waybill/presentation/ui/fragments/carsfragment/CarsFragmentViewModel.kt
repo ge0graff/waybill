@@ -34,17 +34,10 @@ class CarsFragmentViewModel @ViewModelInject constructor(
         carsTaskChannel.send(CarsEvent.NavigateToAddCarScreen)
     }
 
-//    fun showDialog(manager: Fragment, adapter: CarsAdapter){
-//        val dialog = AddCarDialogFragment(adapter)
-//        dialog.show(manager.parentFragmentManager, "customDialog")
-//    }
-
     sealed class CarsEvent{
         object NavigateToAddCarScreen: CarsEvent()
         data class ShowUndoDeleteTaskMessage(val car: Car): CarsEvent()
     }
-
-
 }
 
 

@@ -6,21 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.example.waybill.data.objects.SelectedCar
 import com.example.waybill.databinding.FragmentMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainFragment() : Fragment(){
 
-    companion object {
-        @JvmStatic
-        fun newInstance() = MainFragment()
-    }
+    val viewModel: MainFragmentViewModel by viewModels()
 
-    private lateinit var viewModel: MainFragmentViewModel
-    private lateinit var binding: FragmentMainBinding
+    private var _binding: FragmentMainBinding? = null
+    private val binding get () = _binding!!
+
     private var currentMileage = ""
     private var refuelValue = ""
 
@@ -28,9 +27,13 @@ class MainFragment() : Fragment(){
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentMainBinding.inflate(inflater)
-        viewModel = ViewModelProvider(this, MainFragmentViewModelFactory())
-            .get(MainFragmentViewModel::class.java)
+        _binding = FragmentMainBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         binding.mfCarName.text = SelectedCar.name
 
         viewModel.dalyMileageValueLive.observe(viewLifecycleOwner, Observer {
@@ -41,14 +44,7 @@ class MainFragment() : Fragment(){
             binding.mfFuelValue.text = it
         })
 
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
         binding.mfCalculate.setOnClickListener {
-            //Клик по кнопке расчитать
             currentMileage = binding.mfMileageValue.text.toString()
             refuelValue = binding.mfRefuelValue.text.toString()
             if(currentMileage != ""){
@@ -59,7 +55,6 @@ class MainFragment() : Fragment(){
         }
 
         binding.mfSaveButton.setOnClickListener {
-            //Клик по кнопке сохранить
             viewModel.save(currentMileage, refuelValue)
         }
     }

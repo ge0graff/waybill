@@ -1,5 +1,6 @@
 package com.example.waybill.presentation.ui.recyclerviews.cars
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,11 +11,9 @@ import com.example.waybill.data.model.Car
 import com.example.waybill.data.objects.SelectedCar
 import com.example.waybill.databinding.CarItemBinding
 
-class CarsAdapter(): ListAdapter<Car, CarsAdapter.CarsViewHolder>(DiffCallback()) {
-
-//    var carActionListener: CarActionListener? = null
-//    var clickHandler: CarForwardClick = context as CarForwardClick
-
+class CarsAdapter(
+    private val actionListener: CarForwardClick
+    ): ListAdapter<Car, CarsAdapter.CarsViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarsViewHolder {
         val binding = CarItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -30,36 +29,29 @@ class CarsAdapter(): ListAdapter<Car, CarsAdapter.CarsViewHolder>(DiffCallback()
         RecyclerView.ViewHolder(binding.root) {
 
 
+        @SuppressLint("NotifyDataSetChanged", "SetTextI18n")
         fun bind(car: Car) = with(binding) {
             carItemCarName.text = car.name
             carItemMileage.text = car.mileage + " км"
 
-//            rcInfoButton.setOnClickListener {
-//                clickHandler?.carForwardClick(car)
-//            }
+            rcInfoButton.setOnClickListener {
+                actionListener.onCarDetails(car)
+            }
 
             itemView.setOnClickListener {
-                SelectedCar.apply {
-                    id = car.id ?: 0
-                    name = car.name
-                    mileage = car.mileage
-                    consumption_summer = car.consumption_summer
-                    consumption_winter = car.consumption_winter
-                    fuel_value = car.fuel_value
-                }
+                actionListener.onCarSelect(car)
                 notifyDataSetChanged()
             }
 
-            if (car.id == SelectedCar.id){
+            if (car.id == SelectedCar.id) {
                 rcDoneButton.visibility = View.VISIBLE
-            } else{
+            } else {
                 rcDoneButton.visibility = View.GONE
             }
         }
+    }
 
-        }
-
-    class DiffCallback: DiffUtil.ItemCallback<Car>(){
+    class DiffCallback: DiffUtil.ItemCallback<Car>() {
         override fun areItemsTheSame(oldItem: Car, newItem: Car): Boolean {
             return oldItem == newItem
         }

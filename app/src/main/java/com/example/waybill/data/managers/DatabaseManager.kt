@@ -2,7 +2,6 @@ package com.example.waybill.data.managers
 
 import com.example.waybill.data.Database
 import com.example.waybill.data.model.Car
-import com.example.waybill.data.model.Waybills
 
 class DatabaseManager(database: Database?) {
 
@@ -36,21 +35,21 @@ class DatabaseManager(database: Database?) {
 
     fun waybillsDaoBuild() = waybillsDao != null
 
-    fun insertWaybills(waybills: Waybills) = waybillsDao?.insert(waybills)
+//    fun insertWaybills(waybills: Waybills) = waybillsDao?.insert(waybills)
 
     fun getCarWaybill(id: Int, mouth: String) = waybillsDao?.getCarWaybills(id, mouth)
 
-    fun insertWaybills(waybills: List<Waybills>) {
-        waybills.forEach { waybillsDao?.insert(it) }
-    }
+//    fun insertWaybills(waybills: List<Waybills>) {
+//        waybills.forEach { waybillsDao?.insert(it) }
+//    }
 
-    fun updateWaybills(waybills: Waybills) = waybillsDao?.update(waybills)
+//    fun updateWaybills(waybills: Waybills) = waybillsDao?.update(waybills)
 
-    fun deleteWaybills(waybills: Waybills) = waybillsDao?.delete(waybills)
+//    fun deleteWaybills(waybills: Waybills) = waybillsDao?.delete(waybills)
 
-    fun deleteWaybills(waybills: List<Waybills>) {
-        waybills.forEach { waybillsDao?.delete(it) }
-    }
+//    fun deleteWaybills(waybills: List<Waybills>) {
+//        waybills.forEach { waybillsDao?.delete(it) }
+//    }
 
     fun getWaybills() = waybillsDao?.reedAllData()
 

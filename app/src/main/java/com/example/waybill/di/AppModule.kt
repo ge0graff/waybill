@@ -29,7 +29,6 @@ object AppModule {
     @Provides
     fun provideCarDao(db: Database) = db.carsDao()
 
-
     @Provides
     fun provideWaybillDao(db: Database) = db.waybillsDao()
 
