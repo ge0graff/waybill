@@ -1,5 +1,7 @@
 package com.example.waybill.presentation.ui.fragments.carsfragment
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -17,7 +19,6 @@ import com.example.waybill.presentation.ui.dialogs.AddCarDialogFragment
 import com.example.waybill.presentation.ui.recyclerviews.cars.CarForwardClick
 import com.example.waybill.presentation.ui.recyclerviews.cars.CarsAdapter
 import com.example.waybill.presentation.utils.exhaustive
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -68,10 +69,22 @@ class CarsFragment : Fragment(R.layout.fragment_cars), CarForwardClick{
                 viewModel.carsEvent.collect { event ->
                     when(event){
                         is CarsFragmentViewModel.CarsEvent.ShowUndoDeleteTaskMessage -> {
-                            Snackbar.make(requireView(), "Автомобиль удален", Snackbar.LENGTH_LONG)
-                                .setAction("Отменить"){
-                                    viewModel.onUndoDeleteClick(event.car)
-                                }.show()
+
+                            val listener = DialogInterface.OnClickListener { dialog, which ->
+                                when(which){
+                                    DialogInterface.BUTTON_POSITIVE -> viewModel.onUndoDeleteClick(event.car)
+                                    DialogInterface.BUTTON_NEGATIVE -> dialog.dismiss()
+                                }
+                            }
+                            val dialog = AlertDialog.Builder(requireContext())
+                                .setCancelable(false)
+                                .setIcon(R.drawable.ic_baseline_auto_delete)
+                                .setTitle("Автомобиль удален")
+                                .setMessage("Отменить удаление?")
+                                .setNegativeButton("Нет", listener)
+                                .setPositiveButton("Да", listener)
+                                .create()
+                            dialog.show()
                         }
                         is CarsFragmentViewModel.CarsEvent.NavigateToAddCarScreen -> {
                             val dialog = AddCarDialogFragment()
@@ -107,26 +120,6 @@ class CarsFragment : Fragment(R.layout.fragment_cars), CarForwardClick{
             fuel_value = car.fuel_value
         }
     }
-
+    
 }
 
-
-//        val swHelper = viewModel.getSwiped(adapter)
-//        swHelper.attachToRecyclerView(binding.carsRv)
-//
-//        binding.addCar.setOnClickListener {
-//            viewModel.showDialog(this, adapter)
-//        }
-//           }
-
-
-//    override fun removeCar(car: Car) {
-//        viewModel.remuveItem(car)
-
-
-//    fun observeData(){
-//        viewModel.carlListLive.observe(viewLifecycleOwner, Observer {
-//           adapter = CarsRecyclerAdapter(requireContext(), it)
-//        })
-//
-//    }

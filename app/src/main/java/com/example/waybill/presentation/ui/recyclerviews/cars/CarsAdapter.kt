@@ -28,7 +28,6 @@ class CarsAdapter(
     inner class CarsViewHolder(private val binding: CarItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-
         @SuppressLint("NotifyDataSetChanged", "SetTextI18n")
         fun bind(car: Car) = with(binding) {
             carItemCarName.text = car.name

@@ -17,96 +17,10 @@ class AddCarDialogViewModel @ViewModelInject constructor(
     @Assisted private val state: SavedStateHandle
 ): AndroidViewModel(application) {
 
-
     fun createCar(car: Car) = viewModelScope.launch(Dispatchers.IO){
         carsDao.insert(car)
     }
 
 }
 
-
-
-
-//    val car = state.get<Car>("car")
-//
-//    fun createCar(car: Car) = viewModelScope.launch(Dispatchers.IO){
-//        carsDao.insert(car)
-//       addCarEditChannel.send(AddEditCarEvent.DismissDialog(ADD_CAR_RESULT_OK))
-//    }
-//var carName = state.get<String>("carName") ?:car?.name ?: ""
-//    set(value) {
-//        field = value
-//        state.set("carName", value)
-//    }
-//var carMileage = state.get<String>("carMileage") ?:car?.mileage ?: ""
-//    set(value) {
-//        field = value
-//        state.set("carMileage", value)
-//    }
-//var consumptionSummer = state.get<String>("consumptionSummer") ?:car?.consumption_summer ?: ""
-//    set(value) {
-//        field = value
-//        state.set("consumptionSummer", value)
-//    }
-//var consumptionWinter = state.get<String>("consumptionWinter") ?:car?.consumption_winter ?: ""
-//    set(value) {
-//        field = value
-//        state.set("consumptionWinter", value)
-//    }
-//var fuelValue = state.get<String>("fuelValue") ?:car?.fuel_value ?: ""
-//    set(value) {
-//        field = value
-//        state.set("fuelValue", value)
-//    }
-//fun onSaveClick() {
-//            if(carName.isBlank()){
-//                showInvalidInputCarNameMessage(true)
-//                return
-//            }
-//            if(carMileage.isBlank()){
-//                showInvalidInputCarMileageMessage("Введите пробег автомобиля")
-//                return
-//            }
-//            if(consumptionSummer.isBlank()){
-//                showInvalidInputConsumptionSummerMessage("Введите расход в летнее время")
-//                return
-//            }
-//            if(consumptionWinter.isBlank()){
-//                showInvalidInputConsumptionWinterMessage("Введите расход в зимнее время")
-//                return
-//            }
-//            if(fuelValue.isBlank()){
-//                showInvalidInputFuelValueMessage("Введите остаток топлива в баке")
-//                return
-//            }
-//            if(car == null){
-//                val newCar = Car(null, carName, carMileage, consumptionSummer, consumptionWinter, fuelValue)
-//                createCar(newCar)
-//            }
-//        }
-//
-//    private fun showInvalidInputCarNameMessage(boolean: Boolean) = viewModelScope.launch {
-//        addCarEditChannel.send(AddEditCarEvent.ShowInvalidInputCarNameMessage(boolean))
-//    }
-//    private fun showInvalidInputCarMileageMessage(text: String) = viewModelScope.launch {
-//        addCarEditChannel.send(AddEditCarEvent.ShowInvalidInputCarMileageMessage(text))
-//    }
-//    private fun showInvalidInputConsumptionSummerMessage(text: String) = viewModelScope.launch {
-//        addCarEditChannel.send(AddEditCarEvent.ShowInvalidInputConsumptionSummerMessage(text))
-//    }
-//    private fun showInvalidInputConsumptionWinterMessage(text: String) = viewModelScope.launch {
-//        addCarEditChannel.send(AddEditCarEvent.ShowInvalidInputConsumptionWinterMessage(text))
-//    }
-//    private fun showInvalidInputFuelValueMessage(text: String) = viewModelScope.launch {
-//        addCarEditChannel.send(AddEditCarEvent.ShowInvalidInputFuelValueMessage(text))
-//    }
-//
-//    sealed class AddEditCarEvent {
-//        data class ShowInvalidInputCarNameMessage(val boolean: Boolean): AddEditCarEvent()
-//        data class ShowInvalidInputCarMileageMessage(val msg: String): AddEditCarEvent()
-//        data class ShowInvalidInputConsumptionSummerMessage(val msg: String): AddEditCarEvent()
-//        data class ShowInvalidInputConsumptionWinterMessage(val msg: String): AddEditCarEvent()
-//        data class ShowInvalidInputFuelValueMessage(val msg: String): AddEditCarEvent()
-//        data class DismissDialog(val result: Int): AddEditCarEvent()
-//    }
 

@@ -34,15 +34,6 @@ class MainActivity() : AppCompatActivity(){
 
         buttonNavigationView.setupWithNavController(navController)
     }
-
-//    override fun listForwardClick(mouths: Mouths) {
-//        DataObject.mouthId = mouths.id
-//        val bundle = Bundle()
-//        bundle.putString("mouthId", mouths.id)
-//        supportFragmentManager.beginTransaction().replace(R.id.fragment_holder,
-//            WaybillFragment.getNewInstance(arg = bundle)).addToBackStack(null).commit()
-//    }
-
 }
 
 

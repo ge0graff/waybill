@@ -1,11 +1,13 @@
 package com.example.waybill.presentation.ui.fragments.listfragment
 
 import androidx.lifecycle.ViewModel
-import com.example.waybill.presentation.ui.recyclerviews.lists.Mouths
+import androidx.lifecycle.viewModelScope
+import com.example.waybill.data.model.Mouths
+import kotlinx.coroutines.launch
 
 class ListFragmentLViewModel(): ViewModel() {
 
-    fun fillList(mouths: ArrayList<Mouths>){
+    fun fillList(mouths: ArrayList<Mouths>) = viewModelScope.launch{
         mouths.apply {
             add(Mouths("Январь", "01"))
             add(Mouths("Февраль", "02"))

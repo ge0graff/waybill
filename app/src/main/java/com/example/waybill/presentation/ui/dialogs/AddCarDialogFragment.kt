@@ -79,8 +79,6 @@ class AddCarDialogFragment(): DialogFragment(R.layout.add_car_dialog) {
             }
 
         }
-
-
     }
 
     override fun onDestroyView() {
