@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/mf_car_daily_mileage_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="60dp"
+        android:text="000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/mf_car_daily_mileage_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.175"
+        app:layout_constraintStart_toEndOf="@+id/mf_car_daily_mileage_text"
+        app:layout_constraintTop_toTopOf="@+id/mf_car_daily_mileage_text"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/mf_fuel_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="64dp"
+        android:text="000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/mf_fuel_value_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toEndOf="@+id/mf_fuel_value_text"
+        app:layout_constraintTop_toTopOf="@+id/mf_fuel_value_text"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/mf_fuel_value_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="96dp"
+        android:text="Остаток топлива:"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/mf_car_daily_mileage_text"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/mf_car_daily_mileage_text"
+        app:layout_constraintTop_toBottomOf="@+id/mf_car_daily_mileage_text" />
+
+    <TextView
+        android:id="@+id/mf_car_daily_mileage_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="Пробег за смену:"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.33"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mf_calculate" />
+</androidx.constraintlayout.widget.ConstraintLayout>

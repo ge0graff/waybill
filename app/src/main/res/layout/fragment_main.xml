@@ -12,60 +12,6 @@
         android:background="@color/white">
 
         <TextView
-            android:id="@+id/mf_car_daily_mileage_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Пробег за смену:"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.376"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mf_calculate" />
-
-        <TextView
-            android:id="@+id/mf_fuel_value_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Остаток топлива:"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.382"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mf_car_daily_mileage_text" />
-
-        <TextView
-            android:id="@+id/mf_car_daily_mileage_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="8dp"
-            android:text="000"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/mf_car_daily_mileage_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/mf_car_daily_mileage_text"
-            app:layout_constraintTop_toTopOf="@+id/mf_car_daily_mileage_text"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/mf_fuel_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="8dp"
-            android:text="000"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/mf_fuel_value_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/mf_fuel_value_text"
-            app:layout_constraintTop_toTopOf="@+id/mf_fuel_value_text"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
             android:id="@+id/mf_car_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -106,6 +52,7 @@
             android:layout_height="0dp"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
+            android:inputType="number"
             app:layout_constraintBottom_toBottomOf="@+id/mf_mileage_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.555"
@@ -136,16 +83,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mf_car_name" />
-
-        <Button
-            android:id="@+id/mf_save_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
-            android:text="сохранить"
-            app:layout_constraintEnd_toEndOf="@+id/mf_calculate"
-            app:layout_constraintStart_toStartOf="@+id/mf_calculate"
-            app:layout_constraintTop_toBottomOf="@+id/mf_fuel_value_text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

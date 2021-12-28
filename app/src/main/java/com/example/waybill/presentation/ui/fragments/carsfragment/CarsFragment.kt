@@ -72,16 +72,16 @@ class CarsFragment : Fragment(R.layout.fragment_cars), CarForwardClick{
 
                             val listener = DialogInterface.OnClickListener { dialog, which ->
                                 when(which){
-                                    DialogInterface.BUTTON_POSITIVE -> viewModel.onUndoDeleteClick(event.car)
-                                    DialogInterface.BUTTON_NEGATIVE -> dialog.dismiss()
+                                    DialogInterface.BUTTON_NEGATIVE -> viewModel.onUndoDeleteClick(event.car)
+                                    DialogInterface.BUTTON_POSITIVE -> dialog.dismiss()
                                 }
                             }
                             val dialog = AlertDialog.Builder(requireContext())
                                 .setCancelable(false)
                                 .setIcon(R.drawable.ic_baseline_auto_delete)
                                 .setTitle("Автомобиль удален")
-                                .setMessage("Отменить удаление?")
-                                .setNegativeButton("Нет", listener)
+                                .setMessage("Вы уверены?")
+                                .setNegativeButton("Отменить", listener)
                                 .setPositiveButton("Да", listener)
                                 .create()
                             dialog.show()
