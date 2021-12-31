@@ -25,11 +25,11 @@ class WaybillAdapter(): ListAdapter<Waybills, WaybillAdapter.WaybillHolder>(Diff
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(waybill: Waybills) = with(binding){
-            wbRcvMileage.text = waybill.mileage
-            wbRcvDalyMileage.text = waybill.dailyMileage
-            wbRcvFuelValue.text = waybill.fuelValue
-            wbRcvRefuling.text = waybill.refueling
-            wbRcvData.text = DataObject.dateFormat
+            wbRcvMileage.text = waybill.mileage + " км."
+            wbRcvDalyMileage.text = waybill.dailyMileage + " км."
+            wbRcvFuelValue.text = waybill.fuelValue + " л."
+            wbRcvRefuling.text = waybill.refueling + " л."
+            wbRcvData.text = DataObject.dateFormat + " г."
         }
     }
 

@@ -45,8 +45,8 @@ class MainFragmentViewModel @ViewModelInject constructor (
                 }
             )
         }
-        val waybill = Waybills(null, SelectedCar.id, SelectedCar.mileage, mileageSum.toString(),
-            fuelRemaining.toString(), refuelValue, DataObject.mouths)
+        val waybill = Waybills(null, SelectedCar.id, SelectedCar.mileage, mileageSum.roundToInt().toString(),
+            fuelRemaining.roundToInt().toString(), refuelValue, DataObject.mouths)
         waybillsDao.insert(waybill)
     }
 }
