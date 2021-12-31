@@ -42,7 +42,9 @@ class MainFragment() : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.mfCarName.text = SelectedCar.name
+        if(SelectedCar.id != -1) {
+            binding.mfCarName.text = SelectedCar.name
+        }
 
         binding.mfCalculate.setOnClickListener {
             calculate()
@@ -70,7 +72,7 @@ class MainFragment() : Fragment(){
         val dialog = AlertDialog.Builder(requireContext())
             .setCancelable(false)
             .setIcon(R.drawable.ic_baseline_calculate_24)
-            .setTitle("Калькулятор")
+            .setTitle(resources.getString(R.string.calculate_dialog))
             .setView(dialogBinding.root)
             .setNegativeButton("Отменить", listener)
             .setPositiveButton("Сохранить", listener)
@@ -86,7 +88,7 @@ class MainFragment() : Fragment(){
                 showSelectCarDialog()
             }
             currentMileage == "" -> {
-                binding.mfMileageValue.error = "Введите показания одометра"
+                binding.mfMileageValue.error = resources.getString(R.string.main_fragment_mileage_error)
             }
             else -> {
                 viewModel.calculate(currentMileage, refuelValue)
@@ -105,7 +107,7 @@ class MainFragment() : Fragment(){
         val dialog = AlertDialog.Builder(requireContext())
             .setCancelable(false)
             .setIcon(R.drawable.ic_baseline_auto_delete)
-            .setMessage("Данные сохранены")
+            .setMessage(resources.getString(R.string.main_fragment_dialog_save_data))
             .setPositiveButton("Ок", listener)
             .create()
         dialog.show()
@@ -121,8 +123,8 @@ class MainFragment() : Fragment(){
         val dialog = AlertDialog.Builder(requireContext())
             .setCancelable(false)
             .setIcon(R.drawable.ic_baseline_calculate_24)
-            .setTitle("Калькулятор")
-            .setMessage("Выберете автомобиль")
+            .setTitle(resources.getString(R.string.calculate_dialog))
+            .setMessage(resources.getString(R.string.main_fragment_dialog_select_car))
             .setPositiveButton("Выбрать", listener)
             .setNegativeButton("Отмена", listener)
             .create()

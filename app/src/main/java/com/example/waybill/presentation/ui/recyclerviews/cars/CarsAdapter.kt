@@ -11,6 +11,9 @@ import com.example.waybill.data.model.Car
 import com.example.waybill.data.objects.SelectedCar
 import com.example.waybill.databinding.CarItemBinding
 
+
+
+
 class CarsAdapter(
     private val actionListener: CarForwardClick
     ): ListAdapter<Car, CarsAdapter.CarsViewHolder>(DiffCallback()) {
@@ -40,6 +43,11 @@ class CarsAdapter(
             itemView.setOnClickListener {
                 actionListener.onCarSelect(car)
                 notifyDataSetChanged()
+            }
+
+            itemView.setOnLongClickListener {
+                actionListener.onLongClick(car)
+                true
             }
 
             if (car.id == SelectedCar.id) {

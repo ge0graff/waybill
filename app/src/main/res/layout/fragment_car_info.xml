@@ -3,117 +3,84 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="50dp"
+    android:backgroundTint="#853434"
+    android:backgroundTintMode="src_in"
     tools:context=".presentation.ui.fragments.carinfofragment.CarInfoFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/car_info_fragment"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="80dp"
+        app:cardBackgroundColor="#AFAFAF"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="7dp"
+        app:cardMaxElevation="10dp">
 
-        <TextView
-            android:id="@+id/car_info_consumption_summer_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="16dp"
-            android:text="Летний расход:"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/car_info_car_mileage_text" />
+        <LinearLayout
+            android:id="@+id/linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/car_info_consumption_winter_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="16dp"
-            android:text="Зимний расход:"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/car_info_consumption_summer_text" />
+            <TextView
+                android:id="@+id/car_info_car_name_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="center_horizontal"
+                android:text="Автомобиль"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/car_info_fuel_value_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="16dp"
-            android:text="Остаток топлива:"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/car_info_consumption_winter_text" />
+            <TextView
+                android:id="@+id/car_info_car_mileage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:text="Пробег:"
+                android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/car_info_car_name_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:text="Автомобиль"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/car_info_consumption_summer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_horizontal"
+                android:text="Летний расход:"
+                android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/car_info_car_mileage_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="32dp"
-            android:text="Пробег:"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/car_info_car_name_text" />
+            <TextView
+                android:id="@+id/car_info_consumption_winter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_horizontal"
+                android:text="Зимний расход:"
+                android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/car_info_car_mileage_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:text="000"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/car_info_car_mileage_text"
-            app:layout_constraintStart_toEndOf="@+id/car_info_car_mileage_text"
-            app:layout_constraintTop_toTopOf="@+id/car_info_car_mileage_text"
-            app:layout_constraintVertical_bias="0.0" />
+            <TextView
+                android:id="@+id/car_info_fuel_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_horizontal"
+                android:text="Остаток топлива:"
+                android:layout_marginBottom="25dp"
+                android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/car_info_consumption_summer_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:text="000"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/car_info_consumption_summer_text"
-            app:layout_constraintStart_toEndOf="@+id/car_info_consumption_summer_text"
-            app:layout_constraintTop_toTopOf="@+id/car_info_consumption_summer_text"
-            app:layout_constraintVertical_bias="0.0" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/car_info_fuel_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:text="000"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/car_info_fuel_value_text"
-            app:layout_constraintStart_toEndOf="@+id/car_info_fuel_value_text"
-            app:layout_constraintTop_toTopOf="@+id/car_info_fuel_value_text"
-            app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/car_info_consumption_winter_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:text="000"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/car_info_consumption_winter_text"
-            app:layout_constraintStart_toEndOf="@+id/car_info_consumption_winter_text"
-            app:layout_constraintTop_toTopOf="@+id/car_info_consumption_winter_text"
-            app:layout_constraintVertical_bias="0.0" />
+    </androidx.cardview.widget.CardView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </FrameLayout>

@@ -3,7 +3,9 @@ package com.example.waybill.presentation.ui.fragments.carsfragment
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -25,20 +27,36 @@ import kotlinx.coroutines.flow.collect
 @AndroidEntryPoint
 class CarsFragment : Fragment(R.layout.fragment_cars), CarForwardClick{
 
-    companion object {
-        @JvmStatic
-        fun newInstance() = CarsFragment()
-    }
-
     val viewModel: CarsFragmentViewModel by viewModels()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    private var _binding: FragmentCarsBinding? = null
+    private val binding get () = _binding!!
 
+    val carsAdapter = CarsAdapter(this)
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentCarsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val binding = FragmentCarsBinding.bind(view)
-        val carsAdapter = CarsAdapter(this)
+        touchHelper()
+        viewModelEvent()
+            viewModel.cars.observe(viewLifecycleOwner){
+                carsAdapter.submitList(it)
+            }
+            binding.addCarButton.setOnClickListener {
+                viewModel.onAddCarClick()
+            }
+        }
 
+    private fun touchHelper() {
         binding.apply {
             carsRv.apply {
                 adapter = carsAdapter
@@ -57,51 +75,46 @@ class CarsFragment : Fragment(R.layout.fragment_cars), CarForwardClick{
                         val car = carsAdapter.currentList[viewHolder.adapterPosition]
                         viewModel.onRemoveCar(car)
                     }
+
                 }
                 ).attachToRecyclerView(carsRv)
             }
+        }
+    }
 
-            viewModel.cars.observe(viewLifecycleOwner){
-                carsAdapter.submitList(it)
-            }
-
-            viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-                viewModel.carsEvent.collect { event ->
-                    when(event){
-                        is CarsFragmentViewModel.CarsEvent.ShowUndoDeleteTaskMessage -> {
-
-                            val listener = DialogInterface.OnClickListener { dialog, which ->
-                                when(which){
-                                    DialogInterface.BUTTON_NEGATIVE -> viewModel.onUndoDeleteClick(event.car)
-                                    DialogInterface.BUTTON_POSITIVE -> dialog.dismiss()
-                                }
+    private fun viewModelEvent() {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.carsEvent.collect { event ->
+                when(event){
+                    is CarsFragmentViewModel.CarsEvent.ShowUndoDeleteTaskMessage -> {
+                        val listener = DialogInterface.OnClickListener { dialog, which ->
+                            when(which){
+                                DialogInterface.BUTTON_NEGATIVE -> viewModel.onUndoDeleteClick(event.car)
+                                DialogInterface.BUTTON_POSITIVE -> dialog.dismiss()
                             }
-                            val dialog = AlertDialog.Builder(requireContext())
-                                .setCancelable(false)
-                                .setIcon(R.drawable.ic_baseline_auto_delete)
-                                .setTitle("Автомобиль удален")
-                                .setMessage("Вы уверены?")
-                                .setNegativeButton("Отменить", listener)
-                                .setPositiveButton("Да", listener)
-                                .create()
-                            dialog.show()
                         }
-                        is CarsFragmentViewModel.CarsEvent.NavigateToAddCarScreen -> {
-                            val dialog = AddCarDialogFragment()
-                            dialog.show(parentFragmentManager, "customDialog")
-                        }
-                    }.exhaustive
-                }
-            }
-
-            addCarButton.setOnClickListener {
-                viewModel.onAddCarClick()
+                        val dialog = AlertDialog.Builder(requireContext())
+                            .setCancelable(false)
+                            .setIcon(R.drawable.ic_baseline_auto_delete)
+                            .setTitle("Автомобиль удален")
+                            .setMessage("Вы уверены?")
+                            .setNegativeButton("Отменить", listener)
+                            .setPositiveButton("Да", listener)
+                            .create()
+                        dialog.show()
+                    }
+                    is CarsFragmentViewModel.CarsEvent.NavigateToAddCarScreen -> {
+                        val dialog = AddCarDialogFragment()
+                        dialog.show(parentFragmentManager, "customDialog")
+                    }
+                }.exhaustive
             }
         }
     }
 
     override fun onCarDetails(car: Car) {
         val bundle = Bundle()
+        bundle.putInt("token", 0)
         bundle.putString("name", car.name)
         bundle.putString("mileage", car.mileage)
         bundle.putString("cSum", car.consumption_summer)
@@ -120,6 +133,24 @@ class CarsFragment : Fragment(R.layout.fragment_cars), CarForwardClick{
             fuel_value = car.fuel_value
         }
     }
-    
+
+    override fun onLongClick(car: Car) {
+        val bundle = Bundle()
+        bundle.putInt("car_id", car.id!!)
+        bundle.putInt("token", 1)
+        bundle.putString("button_text", "Сохранить")
+        bundle.putString("edit_text", "Редактирование")
+        bundle.putString("name", car.name)
+        bundle.putString("mileage", car.mileage)
+        bundle.putString("cSum", car.consumption_summer)
+        bundle.putString("cWin", car.consumption_winter)
+        bundle.putString("fuel", car.fuel_value)
+
+        val dialog = AddCarDialogFragment()
+
+        dialog.arguments = bundle
+        dialog.show(parentFragmentManager, "customDialog")
+    }
+
 }
 

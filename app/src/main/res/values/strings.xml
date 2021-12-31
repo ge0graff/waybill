@@ -12,7 +12,31 @@
     <string name="add_car_dialog_car_mileage">Пробег:</string>
     <string name="add_car_dialog_consumption_summer">Расход лето:</string>
     <string name="add_car_dialog_consumption_winter">Расход зима:</string>
-    <string name="add_car_dialog_fuel_value">Остаток топлива:</string>
+
+    <string name="add_car_dialog_name_error">Введите имя автомобиля</string>
+    <string name="add_car_dialog_mileage_error">Введите пробег</string>
+    <string name="add_car_dialog_consumption_summer_error">Введите летний расход</string>
+    <string name="add_car_dialog_consumption_winter_error">Введите зимний расход</string>
+    <string name="add_car_dialog_fuel_error">Введите остаток топлива</string>
+
+
+    <!-- Car Info Fragment-->
+    <string name="info_fragment_car_name">%1$s</string>
+    <string name="car_mileage">Пробег: %1$s км.</string>
+    <string name="car_consumption_summer">Летний расход: %1$s л.</string>
+    <string name="car_consumption_winter">Зимний расход: %1$s л.</string>
+    <string name="car_fuel_value">Остаток топлива: %1$s л.</string>
+    <string name="car_edit_button">Редактировать</string>
+    
+    <!-- Main Fragment-->
+    <string name="mileage_input">Пробег за день</string>
+    <string name="fuel_input">Запровлено топлива</string>
+    <string name="car_name">Автомобиль</string>
+    <string name="calculate_dialog">Калькулятор</string>
+    <string name="calculate_button">Расчитать</string>
+    <string name="main_fragment_mileage_error">Введите пробег</string>
+    <string name="main_fragment_dialog_save_data">Данные сохранены</string>
+    <string name="main_fragment_dialog_select_car">Выберите автомобиль</string>
 
 
     <!-- Designations-->

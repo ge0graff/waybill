@@ -1,6 +1,5 @@
 package com.example.waybill.presentation.ui.dialogs
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +19,7 @@ class AddCarDialogFragment(): DialogFragment(R.layout.add_car_dialog) {
     private var _binding: AddCarDialogBinding? = null
     private val binding get () = _binding!!
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,46 +29,75 @@ class AddCarDialogFragment(): DialogFragment(R.layout.add_car_dialog) {
         return binding.root
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val token = arguments?.getInt("token") ?: 0
+        val id = arguments?.getInt("car_id")
+
+        addEditCar(id, token)
+    }
+
+    private fun addEditCar(id: Int?, token: Int) {
+
+        val token = token
+        val id = id
+        val name = arguments?.getString("name")
+        val mileage = arguments?.getString("mileage")
+        val consumptionSummer= arguments?.getString("cSum")
+        val consumptionWinter= arguments?.getString("cWin")
+        val fuelValue = arguments?.getString("fuel")
+        val buttonText = arguments?.getString("button_text")
+        val editText = arguments?.getString("edit_text")
+
+        if (token == 1) {
+        binding.apply {
+            edCarName.setText(name)
+            edCarMileage.setText(mileage)
+            edConsumptionSummer.setText(consumptionSummer)
+            edConsumptionWinter.setText(consumptionWinter)
+            edFuelValue.setText(fuelValue)
+            btAddCar.text = buttonText
+            addCarDialogTitle.text = editText
+            }
+        }
+
         var carName = false
         var carMileage = false
-        var consumptionSummer = false
-        var consumptionWinter = false
-        var fuelValue = false
+        var carConsumptionSummer = false
+        var carConsumptionWinter = false
+        var carFuelValue = false
 
         binding.apply {
             btAddCar.setOnClickListener {
 
-                if (edCarName.text.isEmpty()) {
-                    binding.edCarName.error = "Введите имя автомобиля"
+                if (edCarName.editableText.isEmpty()) {
+                    binding.edCarName.error = resources.getString(R.string.add_car_dialog_name_error)
                 } else {
                     carName = true
                 }
-                if (edCarMileage.text.isEmpty()) {
-                    binding.edCarMileage.error = "Введите пробег"
+                if (edCarMileage.editableText.isEmpty()) {
+                    binding.edCarMileage.error = resources.getString(R.string.add_car_dialog_mileage_error)
                 } else {
                     carMileage = true
                 }
-                if (edConsumptionSummer.text.isEmpty()) {
-                    binding.edConsumptionSummer.error = "Введите летний расход"
+                if (edConsumptionSummer.editableText.isEmpty()) {
+                    binding.edConsumptionSummer.error = resources.getString(R.string.add_car_dialog_consumption_summer_error)
                 } else {
-                    consumptionSummer = true
+                    carConsumptionSummer = true
                 }
-                if (edConsumptionWinter.text.isEmpty()) {
-                    binding.edConsumptionWinter.error = "Введите зимний расход"
+                if (edConsumptionWinter.editableText.isEmpty()) {
+                    binding.edConsumptionWinter.error = resources.getString(R.string.add_car_dialog_consumption_winter_error)
                 } else {
-                    consumptionWinter = true
+                    carConsumptionWinter = true
                 }
-                if (edFuelValue.text.isEmpty()) {
-                    binding.edFuelValue.error = "Введите остаток топлива"
+                if (edFuelValue.editableText.isEmpty()) {
+                    binding.edFuelValue.error = resources.getString(R.string.add_car_dialog_fuel_error)
                 } else {
-                    fuelValue = true
+                    carFuelValue = true
                 }
-                if (carName && carMileage && consumptionSummer && consumptionWinter && fuelValue) {
-                    val car = Car(null, edCarName.text.toString(), edCarMileage.text.toString(),
+                if (carName && carMileage && carConsumptionSummer && carConsumptionWinter && carFuelValue) {
+                    val car = Car(id, edCarName.text.toString(), edCarMileage.text.toString(),
                         edConsumptionSummer.text.toString(), edConsumptionWinter.text.toString(),
                         edFuelValue.text.toString())
                     viewModel.createCar(car)
@@ -77,7 +106,6 @@ class AddCarDialogFragment(): DialogFragment(R.layout.add_car_dialog) {
                     return@setOnClickListener
                 }
             }
-
         }
     }
 

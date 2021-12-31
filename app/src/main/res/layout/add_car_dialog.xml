@@ -1,99 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/add_car_dialog"
+<!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--        xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--        xmlns:tools="http://schemas.android.com/tools"-->
+<!--        android:id="@+id/FrameLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        tools:context=".presentation.ui.fragments.mainfragment.MainFragment">-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".presentation.ui.dialogs.AddCarDialogFragment">
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/add_car_dialog_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="15dp"
         android:gravity="center_horizontal"
         android:text="@string/add_car_dialog_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/ed_car_name"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/car_name_container"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="12dp"
         android:layout_marginEnd="60dp"
+        android:layout_marginBottom="5dp"
+        android:lines="1">
 
-        android:ems="10"
-        android:hint="Имя автомобиля"
-        android:inputType="textPersonName"
-        android:text=""
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_car_dialog_title" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_car_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:hint="Имя автомобиля"
+            android:inputType="textPersonName"
+            android:lines="1"
+            android:text=""
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/ed_car_mileage"
-        android:layout_width="0dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/car_mileage_container"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Введите пробег"
-        android:inputType="number"
-        android:text=""
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/ed_car_name"
-        app:layout_constraintStart_toStartOf="@+id/ed_car_name"
-        app:layout_constraintTop_toBottomOf="@+id/ed_car_name" />
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:lines="1">
 
-    <EditText
-        android:id="@+id/ed_consumption_summer"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Летний расход (х,х)"
-        android:inputType="numberDecimal"
-        android:text=""
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/ed_car_mileage"
-        app:layout_constraintStart_toStartOf="@+id/ed_car_mileage"
-        app:layout_constraintTop_toBottomOf="@+id/ed_car_mileage" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_car_mileage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:hint="Введите пробег"
+            android:inputType="number"
+            android:lines="1"
+            android:text=""
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/ed_fuel_value"
-        android:layout_width="0dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/car_consumption_summer_container"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Остаток топлива"
-        android:inputType="numberDecimal"
-        android:text=""
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/ed_consumption_winter"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/ed_consumption_winter"
-        app:layout_constraintTop_toBottomOf="@+id/ed_consumption_winter" />
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:lines="1">
 
-    <EditText
-        android:id="@+id/ed_consumption_winter"
-        android:layout_width="0dp"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_consumption_summer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:hint="Летний расход (х,х)"
+            android:inputType="numberDecimal"
+            android:lines="1"
+            android:text=""
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/car_consumption_winter_container"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Зимний расход (х,х)"
-        android:inputType="numberDecimal"
-        android:text=""
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/ed_consumption_summer"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/ed_consumption_summer"
-        app:layout_constraintTop_toBottomOf="@+id/ed_consumption_summer" />
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:lines="1">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_consumption_winter"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:hint="Зимний расход (х,х)"
+            android:inputType="numberDecimal"
+            android:lines="1"
+            android:text=""
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/car_fuel_value_container"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:lines="1">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_fuel_value"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:hint="Остаток топлива"
+            android:inputType="numberDecimal"
+            android:lines="1"
+            android:text=""
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/bt_add_car"
@@ -101,10 +139,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Добавить"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ed_fuel_value" />
+        android:text="Добавить" />
+</LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+

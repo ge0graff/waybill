@@ -6,83 +6,81 @@
     android:layout_height="match_parent"
     tools:context=".presentation.ui.fragments.mainfragment.MainFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
+        android:layout_height="wrap_content"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="80dp"
+        app:cardBackgroundColor="#AFAFAF"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="7dp"
+        app:cardMaxElevation="10dp">
 
-        <TextView
-            android:id="@+id/mf_car_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Автомобиль"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/mf_mileage_text"
-            android:layout_width="181dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="44dp"
-            android:gravity="center"
-            android:text="Пробег на конец смены:"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.069"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mf_car_name" />
+            <TextView
+                android:id="@+id/mf_car_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/car_name"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/mf_refulel_text"
-            android:layout_width="181dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="Заправлено:"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.069"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mf_mileage_text" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/car_mileage_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:lines="1"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="16dp">
 
-        <EditText
-            android:id="@+id/mf_mileage_value"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:inputType="number"
-            app:layout_constraintBottom_toBottomOf="@+id/mf_mileage_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.555"
-            app:layout_constraintStart_toEndOf="@+id/mf_mileage_text"
-            app:layout_constraintTop_toTopOf="@+id/mf_mileage_text"
-            app:layout_constraintVertical_bias="0.0"
-            tools:ignore="MissingConstraints" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/mf_mileage_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:lines="1"
+                    android:hint="@string/mileage_input"
+                    android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/mf_refuel_value"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            app:layout_constraintBottom_toBottomOf="@+id/mf_refulel_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/mf_mileage_text"
-            app:layout_constraintTop_toTopOf="@+id/mf_refulel_text"
-            tools:ignore="MissingConstraints" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/car_fuel_value_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:lines="1"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="16dp">
 
-        <Button
-            android:id="@+id/mf_calculate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="208dp"
-            android:text="рассчитать"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mf_car_name" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/mf_refuel_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:lines="1"
+                    android:hint="@string/fuel_input"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/mf_calculate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/calculate_button"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
 </FrameLayout>
