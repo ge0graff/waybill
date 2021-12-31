@@ -32,7 +32,6 @@ class CarInfoFragment : Fragment() {
 
     private fun putText(){
 
-        val id = arguments?.getInt("car_id")
         val name = arguments?.getString("name")
         val mileage = arguments?.getString("mileage")
         val consumptionSummer= arguments?.getString("cSum")
@@ -47,7 +46,6 @@ class CarInfoFragment : Fragment() {
             carInfoFuelValue.text = resources.getString(R.string.car_fuel_value, fuelValue)
         }
 
-//        editCar(id!!, name, mileage, consumptionSummer, consumptionWinter, fuelValue)
 
     }
 
@@ -58,30 +56,4 @@ class CarInfoFragment : Fragment() {
 }
 
 
-
-//private fun editCar(
-//    id: Int,
-//    name: String?,
-//    mileage: String?,
-//    consumptionSummer: String?,
-//    consumptionWinter: String?,
-//    fuelValue: String?) {
-//
-//    val bundle = Bundle()
-//    bundle.putInt("car_id", id)
-//    bundle.putInt("token", 1)
-//    bundle.putString("button_text", "Сохранить")
-//    bundle.putString("edit_text", "Редактирование")
-//    bundle.putString("name", name)
-//    bundle.putString("mileage", mileage)
-//    bundle.putString("cSum", consumptionSummer)
-//    bundle.putString("cWin", consumptionWinter)
-//    bundle.putString("fuel", fuelValue)
-//
-//    binding.carEditButton.setOnClickListener {
-//        val dialog = AddCarDialogFragment()
-//        dialog.arguments = bundle
-//        dialog.show(parentFragmentManager, "customDialog")
-//    }
-//}
 
