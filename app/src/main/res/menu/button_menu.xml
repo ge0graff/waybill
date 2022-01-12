@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/my_list"
+        android:id="@+id/listFragment"
         android:enabled="true"
         app:showAsAction="ifRoom"
         android:title="@string/my_list"
@@ -11,7 +11,7 @@
         android:orderInCategory="3"/>
 
     <item
-        android:id="@+id/my_cars"
+        android:id="@+id/carsFragment"
         android:enabled="true"
         app:showAsAction="ifRoom"
         android:title="@string/my_cars"
@@ -19,7 +19,7 @@
         android:orderInCategory="1"/>
 
     <item
-        android:id="@+id/main"
+        android:id="@+id/mainFragment"
         android:enabled="true"
         app:showAsAction="ifRoom"
         android:title="@string/add_list"
